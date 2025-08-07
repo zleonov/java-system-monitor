@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":17,"i2":17,"i3":17,"i4":17,"i5":17,"i6":6,"i7":17};
+var methods = {"i0":17,"i1":17,"i2":6,"i3":17,"i4":17,"i5":6,"i6":17,"i7":17};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -142,22 +142,22 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseab
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="../../../../software/leonov/system/monitor/CpuUsage.html" title="interface in software.leonov.system.monitor">CpuUsage</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#cpuUsage--">cpuUsage</a></span>()</code>
-<div class="block">Returns the Central Processing Unit (CPU) usage metrics.</div>
-</td>
-</tr>
-<tr id="i1" class="rowColor">
 <td class="colFirst"><code>static long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#getAvailableMemory--">getAvailableMemory</a></span>()</code>
 <div class="block">Returns the maximum amount of heap memory (in bytes) the JVM will attempt to use or -1 if the information is
  unavailable.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code>static int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#getAvailableProcessors--">getAvailableProcessors</a></span>()</code>
 <div class="block">Returns the number of processors available to the JVM.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="../../../../software/leonov/system/monitor/CpuUsage.html" title="interface in software.leonov.system.monitor">CpuUsage</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#getCpuUsage--">getCpuUsage</a></span>()</code>
+<div class="block">Returns the Central Processing Unit (CPU) usage metrics.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
@@ -173,22 +173,22 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseab
 </td>
 </tr>
 <tr id="i5" class="rowColor">
+<td class="colFirst"><code><a href="../../../../software/leonov/system/monitor/MemoryUsage.html" title="interface in software.leonov.system.monitor">MemoryUsage</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#getMemoryUsage--">getMemoryUsage</a></span>()</code>
+<div class="block">Returns the physical memory (RAM) usage metrics.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>static <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#getSupportedJavaVersion--">getSupportedJavaVersion</a></span>()</code>
+<div class="block">Returns the Java version supported by the Java Virtual Machine (JVM).</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#isSystemCpuUsageSupported--">isSystemCpuUsageSupported</a></span>()</code>
 <div class="block">Returns whether or not <a href="../../../../software/leonov/system/monitor/CpuUsage.html#getSystemCpuLoad--"><code>CpuUsage.getSystemCpuLoad()</code></a> and <a href="../../../../software/leonov/system/monitor/CpuUsage.html#getAverageSystemCpuLoad--"><code>CpuUsage.getAverageSystemCpuLoad()</code></a> are
  supported.</div>
-</td>
-</tr>
-<tr id="i6" class="altColor">
-<td class="colFirst"><code><a href="../../../../software/leonov/system/monitor/MemoryUsage.html" title="interface in software.leonov.system.monitor">MemoryUsage</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#memoryUsage--">memoryUsage</a></span>()</code>
-<div class="block">Returns the physical memory (RAM) usage metrics.</div>
-</td>
-</tr>
-<tr id="i7" class="rowColor">
-<td class="colFirst"><code>static <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#supportedJavaVersion--">supportedJavaVersion</a></span>()</code>
-<div class="block">Returns the Java version supported by the Java Virtual Machine (JVM).</div>
 </td>
 </tr>
 </table>
@@ -289,13 +289,13 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseab
 </dl>
 </li>
 </ul>
-<a name="supportedJavaVersion--">
+<a name="getSupportedJavaVersion--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>supportedJavaVersion</h4>
-<pre>static&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/SystemMonitor.html#line.73">supportedJavaVersion</a>()</pre>
+<h4>getSupportedJavaVersion</h4>
+<pre>static&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/SystemMonitor.html#line.73">getSupportedJavaVersion</a>()</pre>
 <div class="block">Returns the Java version supported by the Java Virtual Machine (JVM).</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -303,13 +303,13 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseab
 </dl>
 </li>
 </ul>
-<a name="cpuUsage--">
+<a name="getCpuUsage--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>cpuUsage</h4>
-<pre><a href="../../../../software/leonov/system/monitor/CpuUsage.html" title="interface in software.leonov.system.monitor">CpuUsage</a>&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/SystemMonitor.html#line.82">cpuUsage</a>()</pre>
+<h4>getCpuUsage</h4>
+<pre><a href="../../../../software/leonov/system/monitor/CpuUsage.html" title="interface in software.leonov.system.monitor">CpuUsage</a>&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/SystemMonitor.html#line.82">getCpuUsage</a>()</pre>
 <div class="block">Returns the Central Processing Unit (CPU) usage metrics.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -317,13 +317,13 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseab
 </dl>
 </li>
 </ul>
-<a name="memoryUsage--">
+<a name="getMemoryUsage--">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>memoryUsage</h4>
-<pre><a href="../../../../software/leonov/system/monitor/MemoryUsage.html" title="interface in software.leonov.system.monitor">MemoryUsage</a>&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/SystemMonitor.html#line.89">memoryUsage</a>()</pre>
+<h4>getMemoryUsage</h4>
+<pre><a href="../../../../software/leonov/system/monitor/MemoryUsage.html" title="interface in software.leonov.system.monitor">MemoryUsage</a>&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/SystemMonitor.html#line.89">getMemoryUsage</a>()</pre>
 <div class="block">Returns the physical memory (RAM) usage metrics.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>

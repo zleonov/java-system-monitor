@@ -72,13 +72,13 @@ public final class BackgroundSystemMonitor extends AbstractSystemMonitor {
     }
 
     @Override
-    public CpuUsage cpuUsage() {
-        return started ? super.cpuUsage() : UnsupportedSystemMonitor.getInstance().cpuUsage();
+    public CpuUsage getCpuUsage() {
+        return started ? super.getCpuUsage() : UnsupportedSystemMonitor.getInstance().getCpuUsage();
     }
 
     @Override
-    public MemoryUsage memoryUsage() {
-        return started ? super.memoryUsage() : UnsupportedSystemMonitor.getInstance().memoryUsage();
+    public MemoryUsage getMemoryUsage() {
+        return started ? super.getMemoryUsage() : UnsupportedSystemMonitor.getInstance().getMemoryUsage();
     }
 
     /**

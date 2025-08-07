@@ -70,8 +70,8 @@ public interface SystemMonitor extends AutoCloseable {
      * 
      * @return the Java version supported by the Java Virtual Machine (JVM)
      */
-    public static String supportedJavaVersion() {
-        return AbstractSystemMonitor.supportedJavaVersion();
+    public static String getSupportedJavaVersion() {
+        return AbstractSystemMonitor.getSupportedJavaVersion();
     }
 
     /**
@@ -79,13 +79,13 @@ public interface SystemMonitor extends AutoCloseable {
      * 
      * @return the Central Processing Unit (CPU) usage metrics
      */
-    public CpuUsage cpuUsage();
+    public CpuUsage getCpuUsage();
 
     /**
      * Returns the physical memory (RAM) usage metrics.
      * 
      * @return the physical memory (RAM) usage metrics
      */
-    public MemoryUsage memoryUsage();
+    public MemoryUsage getMemoryUsage();
 
 }

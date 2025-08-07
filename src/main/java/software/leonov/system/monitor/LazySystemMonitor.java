@@ -5,24 +5,12 @@ import static java.util.Objects.requireNonNull;
 import java.time.Duration;
 
 /**
- * A {@link SystemMonitor} that refreshes usage metrics on demand.
- * <p>
- * This class is created with a {@link #withDefaultRefreshThreshold() default} or a
- * {@link #withRefreshThreshold(Duration) specified} refresh threshold. Usage metrics are updated when either
- * {@link #cpuUsage()} or {@link #memoryUsage()} is called, unless refresh threshold time has not elapsed since the last
- * update, in which case the most recently cached values are returned.
- * <p>
- * This class does not make use of any underlying closeable resources; it's {@link #close()} method is a no-op.
- * 
- * @author Zhenya Leonov
- */
-
-/**
  * A thread-safe {@link SystemMonitor} implementation that refreshes usage metrics on demand.
  * <p>
  * This monitor employs a debouncing mechanism to prevent excessive resource consumption. Usage metrics are updated when
- * either {@link #cpuUsage()} or {@link #memoryUsage()} is called, but only if a refresh threshold has elapsed since the
- * last update. A {@link #withRefreshThreshold(Duration) custom} threshold can be specified when this class is created.
+ * either {@link #getCpuUsage()} or {@link #getMemoryUsage()} is called, but only if a refresh threshold has elapsed
+ * since the last update. A {@link #withRefreshThreshold(Duration) custom} threshold can be specified when this class is
+ * created.
  * <p>
  * No underlying resources are managed by this monitor. The {@link #close()} method is a no-op and can be safely
  * ignored.
@@ -33,8 +21,8 @@ public final class LazySystemMonitor extends AbstractSystemMonitor {
 
     private static final Duration DEFAULT_REFRESH_THRESHOLD = Duration.ofMillis(250);
 
-    private final long    refreshThresholdMillis;
-    private volatile long lastRefreshTimeMillis = -1;
+    private final long refreshThresholdMillis;
+    private long       lastRefreshTimeMillis = -1;
 
     LazySystemMonitor() {
         this(DEFAULT_REFRESH_THRESHOLD);
@@ -56,9 +44,9 @@ public final class LazySystemMonitor extends AbstractSystemMonitor {
     /**
      * Creates a new {@link LazySystemMonitor} configured with the specified refresh threshold.
      * <p>
-     * Usage metrics are updated when either {@link #cpuUsage()} or {@link #memoryUsage()} is called, unless the specified
-     * {@code refreshThreshold} time has not elapsed since the last update, in which case the most recently cached values
-     * are returned.
+     * Usage metrics are updated when either {@link #getCpuUsage()} or {@link #getMemoryUsage()} is called, unless the
+     * specified {@code refreshThreshold} time has not elapsed since the last update, in which case the most recently cached
+     * values are returned.
      *
      * @param refreshThreshold the minimum time interval that must elapse between updates
      * @return a new {@link LazySystemMonitor} configured with the specified refresh threshold
@@ -71,15 +59,15 @@ public final class LazySystemMonitor extends AbstractSystemMonitor {
     }
 
     @Override
-    public CpuUsage cpuUsage() {
+    public CpuUsage getCpuUsage() {
         refreshMetrics();
-        return super.cpuUsage();
+        return super.getCpuUsage();
     }
 
     @Override
-    public MemoryUsage memoryUsage() {
+    public MemoryUsage getMemoryUsage() {
         refreshMetrics();
-        return super.memoryUsage();
+        return super.getMemoryUsage();
     }
 
     @Override

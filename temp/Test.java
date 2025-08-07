@@ -13,7 +13,7 @@ class Test {
 
         System.out.println("JVM name: " + SystemMonitor.getJVMName());
         System.out.println("JVM vendor: " + SystemMonitor.getJVMVendor());
-        System.out.println("Supported Java version: " + SystemMonitor.supportedJavaVersion());
+        System.out.println("Supported Java version: " + SystemMonitor.getSupportedJavaVersion());
         System.out.println();
 
         testMonitor(new LazySystemMonitor());
@@ -52,14 +52,14 @@ class Test {
     public static String toString(final SystemMonitor monitor) {
         // @formatter:off
         return monitor.getClass().getSimpleName()         + "\n    "
-            + "Process CPU Load"      + ": " + formatPercent(monitor.cpuUsage().getProcessCpuLoad())         + "\n    "
-            + "System CPU Load"       + ": " + formatPercent(monitor.cpuUsage().getSystemCpuLoad())          + "\n    "
-            + "System Load Average"   + ": " + formatPercent(monitor.cpuUsage().getSystemLoadAverage())      + "\n    "                 
-            + "Avg. Process CPU Load" + ": " + formatPercent(monitor.cpuUsage().getAverageProcessCpuLoad())  + "\n    "
-            + "Avg. System CPU Load"  + ": " + formatPercent(monitor.cpuUsage().getAverageSystemCpuLoad())   + "\n    "
-            + "Total Memory"          + ": " + formatDecimalBytes(monitor.memoryUsage().getTotalMemory())       + "\n    "            
-            + "Used Memory"           + ": " + formatDecimalBytes(monitor.memoryUsage().getUsedMemory())        + "\n    "                    
-            + "Max. Used Memory"      + ": " + formatDecimalBytes(monitor.memoryUsage().getMaxUsedMemory())
+            + "Process CPU Load"      + ": " + formatPercent(monitor.getCpuUsage().getProcessCpuLoad())         + "\n    "
+            + "System CPU Load"       + ": " + formatPercent(monitor.getCpuUsage().getSystemCpuLoad())          + "\n    "
+            + "System Load Average"   + ": " + formatPercent(monitor.getCpuUsage().getSystemLoadAverage())      + "\n    "                 
+            + "Avg. Process CPU Load" + ": " + formatPercent(monitor.getCpuUsage().getAverageProcessCpuLoad())  + "\n    "
+            + "Avg. System CPU Load"  + ": " + formatPercent(monitor.getCpuUsage().getAverageSystemCpuLoad())   + "\n    "
+            + "Total Memory"          + ": " + formatDecimalBytes(monitor.getMemoryUsage().getTotalMemory())       + "\n    "            
+            + "Used Memory"           + ": " + formatDecimalBytes(monitor.getMemoryUsage().getUsedMemory())        + "\n    "                    
+            + "Max. Used Memory"      + ": " + formatDecimalBytes(monitor.getMemoryUsage().getMaxUsedMemory())
             ;
         // @formatter:on
     }

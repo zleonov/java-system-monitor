@@ -82,49 +82,49 @@ abstract class AbstractSystemMonitor implements SystemMonitor {
         return RUNTIME_BEAN.getVmVendor();
     }
 
-    static String supportedJavaVersion() {
+    static String getSupportedJavaVersion() {
         return RUNTIME_BEAN.getSpecVersion();
     }
 
     @Override
-    public CpuUsage cpuUsage() {
+    public CpuUsage getCpuUsage() {
         return cpu;
     }
 
     @Override
-    public MemoryUsage memoryUsage() {
+    public MemoryUsage getMemoryUsage() {
         return memory;
     }
 
     private double calculateProcessCpuUsage() {
-        if (SUN_OS_BEAN == null) {
-            final long currentTime    = System.nanoTime();
-            final long currentCpuTime = getTotalThreadCpuTime();
+        final double cpuUsage = SUN_OS_BEAN == null ? calculateProcessCpuUsageManually() : SUN_OS_BEAN.getProcessCpuLoad();
+        return cpuUsage < 0 ? -1.0 : Math.min(cpuUsage * 100.0, 100.0);
+    }
 
-            if (currentCpuTime < 0)
-                return -1.0;
+    private double calculateProcessCpuUsageManually() {
+        final long currentTime    = System.nanoTime();
+        final long currentCpuTime = getTotalThreadCpuTime();
 
-            if (lastTime == -1) {
-                lastTime    = currentTime;
-                lastCpuTime = currentCpuTime;
-                return -1.0;
-            }
+        if (currentCpuTime < 0)
+            return -1.0;
 
-            final long timeDiff    = currentTime - lastTime;
-            final long cpuTimeDiff = currentCpuTime - lastCpuTime;
-
+        if (lastTime == -1) {
             lastTime    = currentTime;
             lastCpuTime = currentCpuTime;
-
-            // Handle edge cases
-            if (timeDiff <= 0 || cpuTimeDiff < 0)
-                return 0.0;
-
-            return Math.min((double) cpuTimeDiff / timeDiff * 100.0, 100.0);
-        } else {
-            final double cpuUsage = SUN_OS_BEAN.getProcessCpuLoad();
-            return cpuUsage < 0 ? -1.0 : Math.min(cpuUsage * 100.0, 100.0);
+            return -1.0;
         }
+
+        final long timeDiff    = currentTime - lastTime;
+        final long cpuTimeDiff = currentCpuTime - lastCpuTime;
+
+        lastTime    = currentTime;
+        lastCpuTime = currentCpuTime;
+
+        // Handle edge cases
+        if (timeDiff <= 0 || cpuTimeDiff < 0)
+            return 0.0;
+
+        return cpuTimeDiff / timeDiff;
     }
 
     private double calculateSystemCpuUsage() {
@@ -135,7 +135,7 @@ abstract class AbstractSystemMonitor implements SystemMonitor {
         return cpuUsage < 0 ? -1.0 : cpuUsage * 100.0;
     }
 
-    private double calcAverageProcessCpuLoad() {
+    private double calculateAverageProcessCpuLoad() {
         if (processCpu < 0)
             return -1.0;
 
@@ -160,7 +160,7 @@ abstract class AbstractSystemMonitor implements SystemMonitor {
         return average;
     }
 
-    private double calcAverageSystemCpuLoad() {
+    private double calculateAverageSystemCpuLoad() {
         if (systemCpu < 0)
             return -1.0;
 
@@ -220,8 +220,8 @@ abstract class AbstractSystemMonitor implements SystemMonitor {
         systemLoadAverage = OS_BEAN.getSystemLoadAverage();
 
         // Update average cpu metrics
-        avgProcessCpuLoad = calcAverageProcessCpuLoad();
-        avgSystemCpuLoad  = calcAverageSystemCpuLoad();
+        avgProcessCpuLoad = calculateAverageProcessCpuLoad();
+        avgSystemCpuLoad  = calculateAverageSystemCpuLoad();
 
         cpu    = new CpuUsageImpl(processCpu, systemCpu, systemLoadAverage, avgProcessCpuLoad, avgSystemCpuLoad, maxProcessCpu, maxSystemCpu);
         memory = new MemoryUsageImpl(usedMemory, totalMemory, maxUsedMemory);

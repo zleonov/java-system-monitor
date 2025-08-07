@@ -15,6 +15,6 @@
  */
 
 /**
- * Classes and interfaces for monitoring system-level resource usage.
+ * Classes and interfaces for monitoring JVM and system-level resource usage.
  */
 package software.leonov.system.monitor;

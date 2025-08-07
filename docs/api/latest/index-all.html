@@ -91,20 +91,10 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="software/leonov/system/monitor/UnsupportedSystemMonitor.html#close--">close()</a></span> - Method in class software.leonov.system.monitor.<a href="software/leonov/system/monitor/UnsupportedSystemMonitor.html" title="class in software.leonov.system.monitor">UnsupportedSystemMonitor</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/BackgroundSystemMonitor.html#cpuUsage--">cpuUsage()</a></span> - Method in class software.leonov.system.monitor.<a href="software/leonov/system/monitor/BackgroundSystemMonitor.html" title="class in software.leonov.system.monitor">BackgroundSystemMonitor</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="software/leonov/system/monitor/CpuUsage.html" title="interface in software.leonov.system.monitor"><span class="typeNameLink">CpuUsage</span></a> - Interface in <a href="software/leonov/system/monitor/package-summary.html">software.leonov.system.monitor</a></dt>
 <dd>
 <div class="block">The Central Processing Unit (CPU) usage metrics.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/LazySystemMonitor.html#cpuUsage--">cpuUsage()</a></span> - Method in class software.leonov.system.monitor.<a href="software/leonov/system/monitor/LazySystemMonitor.html" title="class in software.leonov.system.monitor">LazySystemMonitor</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/SystemMonitor.html#cpuUsage--">cpuUsage()</a></span> - Method in interface software.leonov.system.monitor.<a href="software/leonov/system/monitor/SystemMonitor.html" title="interface in software.leonov.system.monitor">SystemMonitor</a></dt>
-<dd>
-<div class="block">Returns the Central Processing Unit (CPU) usage metrics.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/UnsupportedSystemMonitor.html#cpuUsage--">cpuUsage()</a></span> - Method in class software.leonov.system.monitor.<a href="software/leonov/system/monitor/UnsupportedSystemMonitor.html" title="class in software.leonov.system.monitor">UnsupportedSystemMonitor</a></dt>
-<dd>&nbsp;</dd>
 </dl>
 <a name="I:F">
 <!--   -->
@@ -150,6 +140,16 @@
 <dd>
 <div class="block">Returns average system-wide CPU usage or -1 if it is not supported or not ready.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/BackgroundSystemMonitor.html#getCpuUsage--">getCpuUsage()</a></span> - Method in class software.leonov.system.monitor.<a href="software/leonov/system/monitor/BackgroundSystemMonitor.html" title="class in software.leonov.system.monitor">BackgroundSystemMonitor</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/LazySystemMonitor.html#getCpuUsage--">getCpuUsage()</a></span> - Method in class software.leonov.system.monitor.<a href="software/leonov/system/monitor/LazySystemMonitor.html" title="class in software.leonov.system.monitor">LazySystemMonitor</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/SystemMonitor.html#getCpuUsage--">getCpuUsage()</a></span> - Method in interface software.leonov.system.monitor.<a href="software/leonov/system/monitor/SystemMonitor.html" title="interface in software.leonov.system.monitor">SystemMonitor</a></dt>
+<dd>
+<div class="block">Returns the Central Processing Unit (CPU) usage metrics.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/UnsupportedSystemMonitor.html#getCpuUsage--">getCpuUsage()</a></span> - Method in class software.leonov.system.monitor.<a href="software/leonov/system/monitor/UnsupportedSystemMonitor.html" title="class in software.leonov.system.monitor">UnsupportedSystemMonitor</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="software/leonov/system/monitor/UnsupportedSystemMonitor.html#getInstance--">getInstance()</a></span> - Static method in class software.leonov.system.monitor.<a href="software/leonov/system/monitor/UnsupportedSystemMonitor.html" title="class in software.leonov.system.monitor">UnsupportedSystemMonitor</a></dt>
 <dd>
 <div class="block">Returns a singleton instance of <a href="software/leonov/system/monitor/UnsupportedSystemMonitor.html" title="class in software.leonov.system.monitor"><code>UnsupportedSystemMonitor</code></a>.</div>
@@ -175,9 +175,23 @@
 <div class="block">Returns the maximum observed amount of heap memory (in bytes) that has been used by the JVM or -1 if the information
  is unavailable.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/BackgroundSystemMonitor.html#getMemoryUsage--">getMemoryUsage()</a></span> - Method in class software.leonov.system.monitor.<a href="software/leonov/system/monitor/BackgroundSystemMonitor.html" title="class in software.leonov.system.monitor">BackgroundSystemMonitor</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/LazySystemMonitor.html#getMemoryUsage--">getMemoryUsage()</a></span> - Method in class software.leonov.system.monitor.<a href="software/leonov/system/monitor/LazySystemMonitor.html" title="class in software.leonov.system.monitor">LazySystemMonitor</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/SystemMonitor.html#getMemoryUsage--">getMemoryUsage()</a></span> - Method in interface software.leonov.system.monitor.<a href="software/leonov/system/monitor/SystemMonitor.html" title="interface in software.leonov.system.monitor">SystemMonitor</a></dt>
+<dd>
+<div class="block">Returns the physical memory (RAM) usage metrics.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/UnsupportedSystemMonitor.html#getMemoryUsage--">getMemoryUsage()</a></span> - Method in class software.leonov.system.monitor.<a href="software/leonov/system/monitor/UnsupportedSystemMonitor.html" title="class in software.leonov.system.monitor">UnsupportedSystemMonitor</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="software/leonov/system/monitor/CpuUsage.html#getProcessCpuLoad--">getProcessCpuLoad()</a></span> - Method in interface software.leonov.system.monitor.<a href="software/leonov/system/monitor/CpuUsage.html" title="interface in software.leonov.system.monitor">CpuUsage</a></dt>
 <dd>
 <div class="block">Returns the JVM process CPU usage or -1 if it is not supported.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/SystemMonitor.html#getSupportedJavaVersion--">getSupportedJavaVersion()</a></span> - Static method in interface software.leonov.system.monitor.<a href="software/leonov/system/monitor/SystemMonitor.html" title="interface in software.leonov.system.monitor">SystemMonitor</a></dt>
+<dd>
+<div class="block">Returns the Java version supported by the Java Virtual Machine (JVM).</div>
 </dd>
 <dt><span class="memberNameLink"><a href="software/leonov/system/monitor/CpuUsage.html#getSystemCpuLoad--">getSystemCpuLoad()</a></span> - Method in interface software.leonov.system.monitor.<a href="software/leonov/system/monitor/CpuUsage.html" title="interface in software.leonov.system.monitor">CpuUsage</a></dt>
 <dd>
@@ -224,20 +238,10 @@
 </a>
 <h2 class="title">M</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/BackgroundSystemMonitor.html#memoryUsage--">memoryUsage()</a></span> - Method in class software.leonov.system.monitor.<a href="software/leonov/system/monitor/BackgroundSystemMonitor.html" title="class in software.leonov.system.monitor">BackgroundSystemMonitor</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/LazySystemMonitor.html#memoryUsage--">memoryUsage()</a></span> - Method in class software.leonov.system.monitor.<a href="software/leonov/system/monitor/LazySystemMonitor.html" title="class in software.leonov.system.monitor">LazySystemMonitor</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="software/leonov/system/monitor/MemoryUsage.html" title="interface in software.leonov.system.monitor"><span class="typeNameLink">MemoryUsage</span></a> - Interface in <a href="software/leonov/system/monitor/package-summary.html">software.leonov.system.monitor</a></dt>
 <dd>
 <div class="block">The system physical memory (RAM) usage metrics.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/SystemMonitor.html#memoryUsage--">memoryUsage()</a></span> - Method in interface software.leonov.system.monitor.<a href="software/leonov/system/monitor/SystemMonitor.html" title="interface in software.leonov.system.monitor">SystemMonitor</a></dt>
-<dd>
-<div class="block">Returns the physical memory (RAM) usage metrics.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/UnsupportedSystemMonitor.html#memoryUsage--">memoryUsage()</a></span> - Method in class software.leonov.system.monitor.<a href="software/leonov/system/monitor/UnsupportedSystemMonitor.html" title="class in software.leonov.system.monitor">UnsupportedSystemMonitor</a></dt>
-<dd>&nbsp;</dd>
 </dl>
 <a name="I:R">
 <!--   -->
@@ -271,10 +275,6 @@
 <dt><span class="memberNameLink"><a href="software/leonov/system/monitor/BackgroundSystemMonitor.html#stop--">stop()</a></span> - Method in class software.leonov.system.monitor.<a href="software/leonov/system/monitor/BackgroundSystemMonitor.html" title="class in software.leonov.system.monitor">BackgroundSystemMonitor</a></dt>
 <dd>
 <div class="block">Stops this monitor's background thread.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/SystemMonitor.html#supportedJavaVersion--">supportedJavaVersion()</a></span> - Static method in interface software.leonov.system.monitor.<a href="software/leonov/system/monitor/SystemMonitor.html" title="interface in software.leonov.system.monitor">SystemMonitor</a></dt>
-<dd>
-<div class="block">Returns the Java version supported by the Java Virtual Machine (JVM).</div>
 </dd>
 <dt><a href="software/leonov/system/monitor/SystemMonitor.html" title="interface in software.leonov.system.monitor"><span class="typeNameLink">SystemMonitor</span></a> - Interface in <a href="software/leonov/system/monitor/package-summary.html">software.leonov.system.monitor</a></dt>
 <dd>

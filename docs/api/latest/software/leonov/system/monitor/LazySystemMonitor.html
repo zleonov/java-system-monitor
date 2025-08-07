@@ -118,7 +118,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <div class="block">A thread-safe <a href="../../../../software/leonov/system/monitor/SystemMonitor.html" title="interface in software.leonov.system.monitor"><code>SystemMonitor</code></a> implementation that refreshes usage metrics on demand.
  <p>
  This monitor employs a debouncing mechanism to prevent excessive resource consumption. Usage metrics are updated when
- either <a href="../../../../software/leonov/system/monitor/LazySystemMonitor.html#cpuUsage--"><code>cpuUsage()</code></a> or <a href="../../../../software/leonov/system/monitor/LazySystemMonitor.html#memoryUsage--"><code>memoryUsage()</code></a> is called, but only if a refresh threshold has elapsed since the
+ either <a href="../../../../software/leonov/system/monitor/LazySystemMonitor.html#getCpuUsage--"><code>getCpuUsage()</code></a> or <a href="../../../../software/leonov/system/monitor/LazySystemMonitor.html#getMemoryUsage--"><code>getMemoryUsage()</code></a> is called, but only if a refresh threshold has elapsed since the
  last update. A <a href="../../../../software/leonov/system/monitor/LazySystemMonitor.html#withRefreshThreshold-java.time.Duration-"><code>custom</code></a> threshold can be specified when this class is created.
  <p>
  No underlying resources are managed by this monitor. The <a href="../../../../software/leonov/system/monitor/LazySystemMonitor.html#close--"><code>close()</code></a> method is a no-op and can be safely
@@ -153,13 +153,13 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../../../software/leonov/system/monitor/CpuUsage.html" title="interface in software.leonov.system.monitor">CpuUsage</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/LazySystemMonitor.html#cpuUsage--">cpuUsage</a></span>()</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/LazySystemMonitor.html#getCpuUsage--">getCpuUsage</a></span>()</code>
 <div class="block">Returns the Central Processing Unit (CPU) usage metrics.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../../software/leonov/system/monitor/MemoryUsage.html" title="interface in software.leonov.system.monitor">MemoryUsage</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/LazySystemMonitor.html#memoryUsage--">memoryUsage</a></span>()</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/LazySystemMonitor.html#getMemoryUsage--">getMemoryUsage</a></span>()</code>
 <div class="block">Returns the physical memory (RAM) usage metrics.</div>
 </td>
 </tr>
@@ -224,7 +224,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <pre>public static&nbsp;<a href="../../../../software/leonov/system/monitor/LazySystemMonitor.html" title="class in software.leonov.system.monitor">LazySystemMonitor</a>&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/LazySystemMonitor.html#line.66">withRefreshThreshold</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;refreshThreshold)</pre>
 <div class="block">Creates a new <a href="../../../../software/leonov/system/monitor/LazySystemMonitor.html" title="class in software.leonov.system.monitor"><code>LazySystemMonitor</code></a> configured with the specified refresh threshold.
  <p>
- Usage metrics are updated when either <a href="../../../../software/leonov/system/monitor/LazySystemMonitor.html#cpuUsage--"><code>cpuUsage()</code></a> or <a href="../../../../software/leonov/system/monitor/LazySystemMonitor.html#memoryUsage--"><code>memoryUsage()</code></a> is called, unless the specified
+ Usage metrics are updated when either <a href="../../../../software/leonov/system/monitor/LazySystemMonitor.html#getCpuUsage--"><code>getCpuUsage()</code></a> or <a href="../../../../software/leonov/system/monitor/LazySystemMonitor.html#getMemoryUsage--"><code>getMemoryUsage()</code></a> is called, unless the specified
  <code>refreshThreshold</code> time has not elapsed since the last update, in which case the most recently cached values
  are returned.</div>
 <dl>
@@ -235,35 +235,35 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 </dl>
 </li>
 </ul>
-<a name="cpuUsage--">
+<a name="getCpuUsage--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>cpuUsage</h4>
-<pre>public&nbsp;<a href="../../../../software/leonov/system/monitor/CpuUsage.html" title="interface in software.leonov.system.monitor">CpuUsage</a>&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/LazySystemMonitor.html#line.74">cpuUsage</a>()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#cpuUsage--">SystemMonitor</a></code></span></div>
+<h4>getCpuUsage</h4>
+<pre>public&nbsp;<a href="../../../../software/leonov/system/monitor/CpuUsage.html" title="interface in software.leonov.system.monitor">CpuUsage</a>&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/LazySystemMonitor.html#line.74">getCpuUsage</a>()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#getCpuUsage--">SystemMonitor</a></code></span></div>
 <div class="block">Returns the Central Processing Unit (CPU) usage metrics.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#cpuUsage--">cpuUsage</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../software/leonov/system/monitor/SystemMonitor.html" title="interface in software.leonov.system.monitor">SystemMonitor</a></code></dd>
+<dd><code><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#getCpuUsage--">getCpuUsage</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../software/leonov/system/monitor/SystemMonitor.html" title="interface in software.leonov.system.monitor">SystemMonitor</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the Central Processing Unit (CPU) usage metrics</dd>
 </dl>
 </li>
 </ul>
-<a name="memoryUsage--">
+<a name="getMemoryUsage--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>memoryUsage</h4>
-<pre>public&nbsp;<a href="../../../../software/leonov/system/monitor/MemoryUsage.html" title="interface in software.leonov.system.monitor">MemoryUsage</a>&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/LazySystemMonitor.html#line.80">memoryUsage</a>()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#memoryUsage--">SystemMonitor</a></code></span></div>
+<h4>getMemoryUsage</h4>
+<pre>public&nbsp;<a href="../../../../software/leonov/system/monitor/MemoryUsage.html" title="interface in software.leonov.system.monitor">MemoryUsage</a>&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/LazySystemMonitor.html#line.80">getMemoryUsage</a>()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#getMemoryUsage--">SystemMonitor</a></code></span></div>
 <div class="block">Returns the physical memory (RAM) usage metrics.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#memoryUsage--">memoryUsage</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../software/leonov/system/monitor/SystemMonitor.html" title="interface in software.leonov.system.monitor">SystemMonitor</a></code></dd>
+<dd><code><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#getMemoryUsage--">getMemoryUsage</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../software/leonov/system/monitor/SystemMonitor.html" title="interface in software.leonov.system.monitor">SystemMonitor</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the physical memory (RAM) usage metrics</dd>
 </dl>

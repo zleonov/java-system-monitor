@@ -27,12 +27,12 @@ public final class UnsupportedSystemMonitor implements SystemMonitor {
     }
 
     @Override
-    public CpuUsage cpuUsage() {
+    public CpuUsage getCpuUsage() {
         return NEGATIVE_CPU_USAGE;
     }
 
     @Override
-    public MemoryUsage memoryUsage() {
+    public MemoryUsage getMemoryUsage() {
         return NEGATIVE_MEMORY_USAGE;
     }
 

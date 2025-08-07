@@ -16,7 +16,7 @@
     </properties>
 
     <name>System Monitor</name>
-    <description>Monitor Java Virtual Machine (JVM) and system-level resource usage such as CPU and memory in Java.</description>
+    <description>A lightweight library for monitoring Java Virtual Machine (JVM) and system-level resource usage such as CPU and memory in pure Java.</description>
     <url></url>
 
     <licenses>
@@ -27,6 +27,18 @@
     </licenses>
 
     <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.8.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite-api</artifactId>
+            <version>1.8.2</version>
+            <scope>test</scope>
+        </dependency>    
     </dependencies>
 
     <build>

@@ -49,7 +49,7 @@ public final class Formatter {
             return "-1";
 
         if (bytes < base)
-            return bytes + " Bytes";
+            return bytes + " bytes";
 
         final int    exp     = (int) (Math.log(bytes) / Math.log(base));
         final char   pre     = PRE.charAt(exp - 1);
