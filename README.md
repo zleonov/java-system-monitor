@@ -40,7 +40,8 @@ try (final SystemMonitor monitor = BackgroundSystemMonitor
     MemoryUsage memory = monitor.getMemoryUsage();
 
     System.out.println("Current CPU load: " + formatPercent(cpu.getSystemCpuLoad()));
-    System.out.println("Currently using memory: " + formatDecimalBytes(memory.getUsedMemory()) + " out of " + availableMemory);
+    System.out.println("Currently using memory: " + formatDecimalBytes(memory.getUsedMemory()) +
+                                                                 " out of " + availableMemory);
 
     // do work
 
