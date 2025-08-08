@@ -30,8 +30,9 @@ System.out.println("Available processors: " + SystemMonitor.getAvailableProcesso
 final String availableMemory = formatDecimalBytes(SystemMonitor.getAvailableMemory());
 System.out.println("Available memory: " + availableMemory);
 
-try (final SystemMonitor monitor = BackgroundSystemMonitor.refreshEvery(Duration.ofSeconds(1))
-                                                          .start()) { // Don't forget to start() the monitor
+try (final SystemMonitor monitor = BackgroundSystemMonitor
+                                             .refreshEvery(Duration.ofSeconds(1))
+                                             .start()) { // Don't forget to start() the monitor
 
     // do work
 
