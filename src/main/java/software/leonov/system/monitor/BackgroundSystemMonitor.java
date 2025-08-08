@@ -22,8 +22,6 @@ public final class BackgroundSystemMonitor extends AbstractSystemMonitor {
 
     private final Thread t;
 
-    private volatile boolean started = false;
-
     BackgroundSystemMonitor() {
         this(DEFAULT_REFRESH_INTERVAL);
     }
@@ -38,7 +36,7 @@ public final class BackgroundSystemMonitor extends AbstractSystemMonitor {
                     refreshMetrics();
                 }
             } catch (final InterruptedException e) {
-                // This is our own thread so we don't need to re-interrupt
+                // Thread is terminating, no need to restore interrupt status because it's "our" thread
             }
         });
 
@@ -73,12 +71,12 @@ public final class BackgroundSystemMonitor extends AbstractSystemMonitor {
 
     @Override
     public CpuUsage getCpuUsage() {
-        return started ? super.getCpuUsage() : UnsupportedSystemMonitor.getInstance().getCpuUsage();
+        return t.isAlive() ? super.getCpuUsage() : UnsupportedSystemMonitor.getInstance().getCpuUsage();
     }
 
     @Override
     public MemoryUsage getMemoryUsage() {
-        return started ? super.getMemoryUsage() : UnsupportedSystemMonitor.getInstance().getMemoryUsage();
+        return t.isAlive() ? super.getMemoryUsage() : UnsupportedSystemMonitor.getInstance().getMemoryUsage();
     }
 
     /**
@@ -88,12 +86,11 @@ public final class BackgroundSystemMonitor extends AbstractSystemMonitor {
      */
     public BackgroundSystemMonitor start() {
         t.start();
-        started = true;
         return this;
     }
 
     /**
-     * Stops this monitor's background thread.
+     * Stops this monitor's background thread and waits for it to finish running.
      * <p>
      * This method delegates to {@link #close()}.
      */
@@ -101,9 +98,18 @@ public final class BackgroundSystemMonitor extends AbstractSystemMonitor {
         close();
     }
 
+    /**
+     * Stops this monitor's background thread and waits for it to finish running.
+     */
     @Override
     public void close() {
         t.interrupt();
+
+        try {
+            t.join();
+        } catch (final InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 
 }

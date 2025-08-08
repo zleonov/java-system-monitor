@@ -23,10 +23,6 @@ public final class UnsupportedSystemMonitor implements SystemMonitor {
     }
 
     @Override
-    public void close() throws Exception {
-    }
-
-    @Override
     public CpuUsage getCpuUsage() {
         return NEGATIVE_CPU_USAGE;
     }

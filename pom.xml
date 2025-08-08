@@ -90,7 +90,7 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                     <docencoding>${project.build.sourceEncoding}</docencoding>
                     <charset>${project.build.sourceEncoding}</charset>
-                    <show>protected</show>
+                    <show>public</show>
                     <doclint>all</doclint>
                     <linksource>true</linksource>
                     <failOnError>true</failOnError>                    

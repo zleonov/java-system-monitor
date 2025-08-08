@@ -80,9 +80,4 @@ public final class LazySystemMonitor extends AbstractSystemMonitor {
         }
     }
 
-    @Override
-    public void close() throws Exception {
-        // nothing to do
-    }
-
 }

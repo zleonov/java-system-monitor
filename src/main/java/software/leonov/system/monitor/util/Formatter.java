@@ -4,6 +4,8 @@ package software.leonov.system.monitor.util;
  * Basic utility methods for formatting CPU and memory usage metrics.
  * <p>
  * This is a convenience class intended for casual use only (primarily for quick testing and debugging).
+ * 
+ * @author Zhenya Leonov
  */
 public final class Formatter {
 

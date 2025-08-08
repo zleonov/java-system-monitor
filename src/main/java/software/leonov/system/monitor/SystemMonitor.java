@@ -3,23 +3,23 @@ package software.leonov.system.monitor;
 /**
  * Monitors Java Virtual Machine (JVM) and system-level resource usage such as CPU and memory.
  * <p>
- * Implementations of this interface do not throw exceptions. Instead, methods that return a numeric metric will return
- * -1.0 or -1 if the requested information is unavailable, uninitialized, or are unsupported on the underlying platform.
+ * Implementations of this interface do not throw exceptions. Methods that return a numeric metric will return a
+ * negative value if the requested information is unavailable, uninitialized, or is unsupported on the underlying
+ * platform.
  * <p>
  * This interface extends {@link AutoCloseable}, but implementations may or may not require a resource to be closed. It
  * is the responsibility of the concrete implementation to document its resource management and the behavior of its
- * {@link #close()} method.
+ * {@link #close() close} method.
  *
  * @author Zhenya Leonov
  */
 public interface SystemMonitor extends AutoCloseable {
 
     /**
-     * Returns the maximum amount of heap memory (in bytes) the JVM will attempt to use or -1 if the information is
-     * unavailable. This value typically corresponds to the <i>-Xmx</i> JVM argument.
+     * Returns the maximum amount of heap memory (in bytes) the JVM may attempt to use. This value typically corresponds to
+     * the <i>-Xmx</i> JVM argument.
      *
-     * @return the maximum amount of heap memory (in bytes) the JVM will attempt to use or -1 if the information is
-     *         unavailable
+     * @return the maximum amount of heap memory (in bytes) the JVM may attempt to use.
      */
     public static long getAvailableMemory() {
         return AbstractSystemMonitor.getAvailableMemory();
@@ -87,5 +87,11 @@ public interface SystemMonitor extends AutoCloseable {
      * @return the physical memory (RAM) usage metrics
      */
     public MemoryUsage getMemoryUsage();
+
+    /**
+     * The default implementation of the {@code close} method is a no-op.
+     */
+    default public void close() {
+    };
 
 }

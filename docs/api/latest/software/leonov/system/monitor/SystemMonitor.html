@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":17,"i1":17,"i2":6,"i3":17,"i4":17,"i5":6,"i6":17,"i7":17};
+var methods = {"i0":18,"i1":17,"i2":17,"i3":6,"i4":17,"i5":17,"i6":6,"i7":17,"i8":17};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -109,16 +109,17 @@ var activeTableTab = "activeTableTab";
 </dl>
 <hr>
 <br>
-<pre>public interface <a href="../../../../src-html/software/leonov/system/monitor/SystemMonitor.html#line.15">SystemMonitor</a>
+<pre>public interface <a href="../../../../src-html/software/leonov/system/monitor/SystemMonitor.html#line.16">SystemMonitor</a>
 extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></pre>
 <div class="block">Monitors Java Virtual Machine (JVM) and system-level resource usage such as CPU and memory.
  <p>
- Implementations of this interface do not throw exceptions. Instead, methods that return a numeric metric will return
- -1.0 or -1 if the requested information is unavailable, uninitialized, or are unsupported on the underlying platform.
+ Implementations of this interface do not throw exceptions. Methods that return a numeric metric will return a
+ negative value if the requested information is unavailable, uninitialized, or is unsupported on the underlying
+ platform.
  <p>
  This interface extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang"><code>AutoCloseable</code></a>, but implementations may or may not require a resource to be closed. It
  is the responsibility of the concrete implementation to document its resource management and the behavior of its
- <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true#close--" title="class or interface in java.lang"><code>AutoCloseable.close()</code></a> method.</div>
+ <a href="../../../../software/leonov/system/monitor/SystemMonitor.html#close--"><code>close</code></a> method.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>Zhenya Leonov</dd>
@@ -142,49 +143,54 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseab
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>static long</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#getAvailableMemory--">getAvailableMemory</a></span>()</code>
-<div class="block">Returns the maximum amount of heap memory (in bytes) the JVM will attempt to use or -1 if the information is
- unavailable.</div>
+<td class="colFirst"><code>default void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#close--">close</a></span>()</code>
+<div class="block">The default implementation of the <code>close</code> method is a no-op.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code>static long</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#getAvailableMemory--">getAvailableMemory</a></span>()</code>
+<div class="block">Returns the maximum amount of heap memory (in bytes) the JVM may attempt to use.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>static int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#getAvailableProcessors--">getAvailableProcessors</a></span>()</code>
 <div class="block">Returns the number of processors available to the JVM.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="../../../../software/leonov/system/monitor/CpuUsage.html" title="interface in software.leonov.system.monitor">CpuUsage</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#getCpuUsage--">getCpuUsage</a></span>()</code>
 <div class="block">Returns the Central Processing Unit (CPU) usage metrics.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>static <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#getJVMName--">getJVMName</a></span>()</code>
 <div class="block">Returns the Java Virtual Machine (JVM) name.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>static <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#getJVMVendor--">getJVMVendor</a></span>()</code>
 <div class="block">Returns the Java Virtual Machine (JVM) vendor.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="../../../../software/leonov/system/monitor/MemoryUsage.html" title="interface in software.leonov.system.monitor">MemoryUsage</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#getMemoryUsage--">getMemoryUsage</a></span>()</code>
 <div class="block">Returns the physical memory (RAM) usage metrics.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>static <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#getSupportedJavaVersion--">getSupportedJavaVersion</a></span>()</code>
 <div class="block">Returns the Java version supported by the Java Virtual Machine (JVM).</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#isSystemCpuUsageSupported--">isSystemCpuUsageSupported</a></span>()</code>
 <div class="block">Returns whether or not <a href="../../../../software/leonov/system/monitor/CpuUsage.html#getSystemCpuLoad--"><code>CpuUsage.getSystemCpuLoad()</code></a> and <a href="../../../../software/leonov/system/monitor/CpuUsage.html#getAverageSystemCpuLoad--"><code>CpuUsage.getAverageSystemCpuLoad()</code></a> are
@@ -192,13 +198,6 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseab
 </td>
 </tr>
 </table>
-<ul class="blockList">
-<li class="blockList"><a name="methods.inherited.from.class.java.lang.AutoCloseable">
-<!--   -->
-</a>
-<h3>Methods inherited from interface&nbsp;java.lang.<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></h3>
-<code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true#close--" title="class or interface in java.lang">close</a></code></li>
-</ul>
 </li>
 </ul>
 </li>
@@ -220,12 +219,11 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseab
 <li class="blockList">
 <h4>getAvailableMemory</h4>
 <pre>static&nbsp;long&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/SystemMonitor.html#line.24">getAvailableMemory</a>()</pre>
-<div class="block">Returns the maximum amount of heap memory (in bytes) the JVM will attempt to use or -1 if the information is
- unavailable. This value typically corresponds to the <i>-Xmx</i> JVM argument.</div>
+<div class="block">Returns the maximum amount of heap memory (in bytes) the JVM may attempt to use. This value typically corresponds to
+ the <i>-Xmx</i> JVM argument.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the maximum amount of heap memory (in bytes) the JVM will attempt to use or -1 if the information is
-         unavailable</dd>
+<dd>the maximum amount of heap memory (in bytes) the JVM may attempt to use.</dd>
 </dl>
 </li>
 </ul>
@@ -320,7 +318,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseab
 <a name="getMemoryUsage--">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>getMemoryUsage</h4>
 <pre><a href="../../../../software/leonov/system/monitor/MemoryUsage.html" title="interface in software.leonov.system.monitor">MemoryUsage</a>&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/SystemMonitor.html#line.89">getMemoryUsage</a>()</pre>
@@ -328,6 +326,20 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseab
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the physical memory (RAM) usage metrics</dd>
+</dl>
+</li>
+</ul>
+<a name="close--">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>close</h4>
+<pre>default&nbsp;void&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/SystemMonitor.html#line.94">close</a>()</pre>
+<div class="block">The default implementation of the <code>close</code> method is a no-op.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true#close--" title="class or interface in java.lang">close</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></code></dd>
 </dl>
 </li>
 </ul>

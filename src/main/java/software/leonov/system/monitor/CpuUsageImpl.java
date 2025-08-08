@@ -1,5 +1,7 @@
 package software.leonov.system.monitor;
 
+import static software.leonov.system.monitor.util.Formatter.formatPercent;
+
 /**
  * An implementation of the {@link CpuUsage} interface.
  * 
@@ -62,8 +64,16 @@ final class CpuUsageImpl implements CpuUsage {
 
     @Override
     public String toString() {
-        return String.format("[processCpu=%s, systemCpu=%s, systemLoadAverage=%s, avgProcessCpuLoad=%s, avgSystemCpuLoad=%s, maxProcessCpu=%s, maxSystemCpu=%s]", processCpu, systemCpu, systemLoadAverage, avgProcessCpuLoad, avgSystemCpuLoad,
-                maxProcessCpu, maxSystemCpu);
+        // @formatter:off
+        return String.format("[processCpu=%s, systemCpu=%s, systemLoadAverage=%s, avgProcessCpuLoad=%s, avgSystemCpuLoad=%s, maxProcessCpu=%s, maxSystemCpu=%s]",
+                      formatPercent(processCpu),
+                      formatPercent(systemCpu),
+                      formatPercent(systemLoadAverage),
+                      formatPercent(avgProcessCpuLoad),
+                      formatPercent(avgSystemCpuLoad),
+                      formatPercent(maxProcessCpu),
+                      formatPercent(maxSystemCpu));
+        // @formatter:on
     }
 
 }

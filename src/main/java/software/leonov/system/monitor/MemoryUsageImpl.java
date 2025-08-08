@@ -1,5 +1,7 @@
 package software.leonov.system.monitor;
 
+import static software.leonov.system.monitor.util.Formatter.formatDecimalBytes;
+
 /**
  * An implementation of the {@link MemoryUsage} interface.
  * 
@@ -34,7 +36,7 @@ final class MemoryUsageImpl implements MemoryUsage {
 
     @Override
     public String toString() {
-        return String.format("[usedMemory=%s, totalMemory=%s, maxUsedMemory=%s]", usedMemory, totalMemory, maxUsedMemory);
+        return String.format("[usedMemory=%s, totalMemory=%s, maxUsedMemory=%s]", formatDecimalBytes(usedMemory), formatDecimalBytes(totalMemory), formatDecimalBytes(maxUsedMemory));
     }
 
 }

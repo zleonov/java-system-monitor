@@ -21,24 +21,24 @@ public class UnsupportedSystemMonitorTest {
     @Test
     public void test_getCpuUsage_returns_negative_values() {
         final UnsupportedSystemMonitor monitor = UnsupportedSystemMonitor.getInstance();
-        final CpuUsage cpu = monitor.getCpuUsage();
+        final CpuUsage                 cpu     = monitor.getCpuUsage();
 
         assertNotNull(cpu);
 
         // All CPU values should be -1 (unsupported)
-        assertEquals(-1.0, cpu.getProcessCpuLoad(), "Process CPU usage should be -1");
-        assertEquals(-1.0, cpu.getSystemCpuLoad(), "System CPU usage should be -1");
-        assertEquals(-1.0, cpu.getSystemLoadAverage(), "System load average should be -1");
-        assertEquals(-1.0, cpu.getAverageProcessCpuLoad(), "Average process CPU should be -1");
-        assertEquals(-1.0, cpu.getAverageSystemCpuLoad(), "Average system CPU should be -1");
-        assertEquals(-1.0, cpu.getMaxProcessCpuLoad(), "Max process CPU should be -1");
-        assertEquals(-1.0, cpu.getMaxSystemCpuLoad(), "Max system CPU should be -1");
+        assertEquals(-1.0, cpu.getProcessCpuLoad(), "Process CPU usage should be -1.0");
+        assertEquals(-1.0, cpu.getSystemCpuLoad(), "System CPU usage should be -1.0");
+        assertEquals(-1.0, cpu.getSystemLoadAverage(), "System load average should be -1.0");
+        assertEquals(-1.0, cpu.getAverageProcessCpuLoad(), "Average process CPU should be -1.0");
+        assertEquals(-1.0, cpu.getAverageSystemCpuLoad(), "Average system CPU should be -1.0");
+        assertEquals(-1.0, cpu.getMaxProcessCpuLoad(), "Max process CPU should be -1.0");
+        assertEquals(-1.0, cpu.getMaxSystemCpuLoad(), "Max system CPU should be -1.0");
     }
 
     @Test
-    public void test_getMemoryUsage_returns_unsupported_values() {
+    public void test_getMemoryUsage_returns_negative_values() {
         final UnsupportedSystemMonitor monitor = UnsupportedSystemMonitor.getInstance();
-        final MemoryUsage memory = monitor.getMemoryUsage();
+        final MemoryUsage              memory  = monitor.getMemoryUsage();
 
         assertNotNull(memory);
 
@@ -52,8 +52,8 @@ public class UnsupportedSystemMonitorTest {
     public void test_multiple_calls_return_same_instances() {
         final UnsupportedSystemMonitor monitor = UnsupportedSystemMonitor.getInstance();
 
-        final CpuUsage cpu1 = monitor.getCpuUsage();
-        final CpuUsage cpu2 = monitor.getCpuUsage();
+        final CpuUsage    cpu1    = monitor.getCpuUsage();
+        final CpuUsage    cpu2    = monitor.getCpuUsage();
         final MemoryUsage memory1 = monitor.getMemoryUsage();
         final MemoryUsage memory2 = monitor.getMemoryUsage();
 
@@ -61,33 +61,17 @@ public class UnsupportedSystemMonitorTest {
         assertSame(cpu1, cpu2, "Should return same CPU usage instance");
         assertSame(memory1, memory2, "Should return same memory usage instance");
     }
-
-    @Test
-    public void test_close_does_not_throw() {
-        final UnsupportedSystemMonitor monitor = UnsupportedSystemMonitor.getInstance();
-        
-        // close() should be a no-op and not throw
-        try {
-            monitor.close();
-        } catch (final Exception e) {
-            throw new AssertionError("close() should not throw exception", e);
-        }
-    }
-
+    
     @Test
     public void test_usage_after_close_still_works() {
         final UnsupportedSystemMonitor monitor = UnsupportedSystemMonitor.getInstance();
-        
-        try {
-            monitor.close();
-        } catch (final Exception e) {
-            // Should not happen
-        }
-        
+
+        monitor.close();
+
         // Should still work after close
-        final CpuUsage cpu = monitor.getCpuUsage();
+        final CpuUsage    cpu    = monitor.getCpuUsage();
         final MemoryUsage memory = monitor.getMemoryUsage();
-        
+
         assertNotNull(cpu);
         assertNotNull(memory);
         assertEquals(-1.0, cpu.getProcessCpuLoad());
