@@ -4,7 +4,7 @@ A lightweight library for monitoring Java Virtual Machine (JVM) and system-level
 
 Overview
 --------
-Java System Monitor provides a simple and efficient way to monitor system resources in pure Java applications. It offers several monitoring strategies to suit different use cases, from background monitoring to on-demand resource checks.
+Java System Monitor provides a simple and efficient way to monitor system resources in Java applications. It offers several monitoring strategies to suit different use cases, from background monitoring to on-demand resource checks.
 
 The library is designed to be lightweight, easy to use, and performant, making it suitable for both development and production environments.
 
@@ -14,23 +14,40 @@ Key features:
 - Multiple monitoring strategies (lazy, background)
 - Minimal overhead
 - Thread-safe implementations
+- 100% pure Java, no dependencies
 
 Usage Example
 -------------
 
 ```java
-try (final BackgroundSystemMonitor monitor = BackgroundSystemMonitor.refreshEvery(Duration.ofSeconds(1))) {
+
+import static software.leonov.system.monitor.util.Formatter.*;
+
+...
+
+System.out.println("Available processors: " + SystemMonitor.getAvailableProcessors());
+
+final String availableMemory = formatDecimalBytes(SystemMonitor.getAvailableMemory());
+System.out.println("Available memory: " + availableMemory);
+
+try (final BackgroundSystemMonitor monitor = BackgroundSystemMonitor.refreshEvery(Duration.ofSeconds(1)).start()) { // don't forget to start
+
     // do work
 
-    System.out.println("Current CPU load: " + formatPercent(monitor.getCpuUsage().getSystemCpuLoad()));
-    System.out.println("Current used memory: " + formatDecimalBytes(monitor.getMemoryUsage().getUsedMemory()));
+    CpuUsage    cpu    = monitor.getCpuUsage();
+    MemoryUsage memory = monitor.getMemoryUsage();
+
+    System.out.println("Current CPU load: " + formatPercent(cpu.getSystemCpuLoad()));
+    System.out.println("Currently using memory: " + formatDecimalBytes(memory.getUsedMemory()) + " out of " + availableMemory);
 
     // do work
 
-    System.out.println("Average CPU load: " + formatPercent(monitor.getCpuUsage().getAverageSystemCpuLoad()));
-    System.out.println("Maximum used memory: " + formatDecimalBytes(monitor.getMemoryUsage().getMaxUsedMemory()));
+    cpu    = monitor.getCpuUsage();
+    memory = monitor.getMemoryUsage();
 
-}
+    System.out.println("Average CPU load: " + formatPercent(cpu.getAverageSystemCpuLoad()));
+    System.out.println("Maximum used memory: " + formatDecimalBytes(memory.getMaxUsedMemory()));
+} // stops the monitor
 ```
 
 Documentation
