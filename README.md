@@ -30,7 +30,8 @@ System.out.println("Available processors: " + SystemMonitor.getAvailableProcesso
 final String availableMemory = formatDecimalBytes(SystemMonitor.getAvailableMemory());
 System.out.println("Available memory: " + availableMemory);
 
-try (final BackgroundSystemMonitor monitor = BackgroundSystemMonitor.refreshEvery(Duration.ofSeconds(1)).start()) { // don't forget to start
+try (final SystemMonitor monitor = BackgroundSystemMonitor.refreshEvery(Duration.ofSeconds(1))
+                                                          .start()) { // Don't forget to start() the monitor
 
     // do work
 
@@ -47,7 +48,8 @@ try (final BackgroundSystemMonitor monitor = BackgroundSystemMonitor.refreshEver
 
     System.out.println("Average CPU load: " + formatPercent(cpu.getAverageSystemCpuLoad()));
     System.out.println("Maximum used memory: " + formatDecimalBytes(memory.getMaxUsedMemory()));
-} // stops the monitor
+
+} // Automatically stop() the monitor
 ```
 
 Documentation
