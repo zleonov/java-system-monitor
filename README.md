@@ -9,12 +9,12 @@ Java System Monitor provides a simple and efficient way to monitor system resour
 The library is designed to be lightweight, easy to use, and performant, making it suitable for both development and production environments.
 
 Key features:
-- CPU usage monitoring
-- Memory usage monitoring  
+- CPU usage monitoring (process and system-wide)
+- Memory usage monitoring with historical tracking
 - Multiple monitoring strategies (lazy, background)
 - Minimal overhead
 - Thread-safe implementations
-- 100% pure Java, no dependencies
+- 100% pure Java, no external dependencies
 
 Usage Example
 -------------

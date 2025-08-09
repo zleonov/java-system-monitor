@@ -74,6 +74,14 @@ abstract class AbstractSystemMonitor implements SystemMonitor {
         return SUN_OS_BEAN != null;
     }
 
+    static String getOperatingSystemName() {
+        return OS_BEAN.getName();
+    }
+
+    static String getOperatingSystemVersion() {
+        return OS_BEAN.getVersion();
+    }
+
     static String getJVMName() {
         return RUNTIME_BEAN.getVmName();
     }

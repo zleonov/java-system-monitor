@@ -10,26 +10,26 @@ import java.lang.management.OperatingSystemMXBean;
 public interface CpuUsage {
 
     /**
-     * Returns the JVM process CPU usage or -1.0 if it is not supported.
+     * Returns the JVM process CPU usage or -1.0 if it is not supported or not ready.
      * 
-     * @return the JVM process CPU usage or -1.0 if it is not supported
+     * @return the JVM process CPU usage or -1.0 if it is not supported or not ready
      */
     public double getProcessCpuLoad();
 
     /**
-     * Returns the system-wide CPU usage or -1.0 if it is not supported.
+     * Returns the system-wide CPU usage or -1.0 if it is not supported or not ready.
      * 
-     * @return the system-wide CPU usage or -1.0 if it is not supported
+     * @return the system-wide CPU usage or -1.0 if it is not supported or not ready
      */
     public double getSystemCpuLoad();
 
     /**
      * Returns the system load average for the last minute (only supported on Unix/Linux systems) or -1.0 if it is not
-     * supported.
+     * supported or not ready.
      * <p>
      * For more details see {@link OperatingSystemMXBean#getSystemLoadAverage()}.
      * 
-     * @return the system load average for the last minute or -1.0 if it is not supported
+     * @return the system load average for the last minute or -1.0 if it is not supported or not ready
      */
     public double getSystemLoadAverage();
 

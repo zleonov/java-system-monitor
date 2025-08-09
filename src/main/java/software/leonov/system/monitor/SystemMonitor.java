@@ -48,6 +48,24 @@ public interface SystemMonitor extends AutoCloseable {
     }
 
     /**
+     * Returns the Operating System name.
+     * 
+     * @return the Operating System name
+     */
+    public static String getOperatingSystemName() {
+        return AbstractSystemMonitor.getOperatingSystemName();
+    }
+
+    /**
+     * Returns the Operating System version.
+     * 
+     * @return the Operating System version
+     */
+    public static String getOperatingSystemVersion() {
+        return AbstractSystemMonitor.getOperatingSystemVersion();
+    }
+
+    /**
      * Returns the Java Virtual Machine (JVM) name.
      * 
      * @return the Java Virtual Machine (JVM) name
