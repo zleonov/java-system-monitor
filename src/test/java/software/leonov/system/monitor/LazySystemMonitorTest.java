@@ -17,20 +17,20 @@ public class LazySystemMonitorTest {
 
     @Test
     public void test_withDefaultRefreshThreshold_not_null() {
-        final LazySystemMonitor monitor = LazySystemMonitor.withDefaultRefreshThreshold();
+        final LazySystemMonitor monitor = LazySystemMonitor.withDefaultUpdateThreshold();
         assertNotNull(monitor);
     }
 
     @Test
     public void test_withRefreshThreshold_not_null() {
-        final LazySystemMonitor monitor = LazySystemMonitor.withRefreshThreshold(Duration.ofMillis(500));
+        final LazySystemMonitor monitor = LazySystemMonitor.withUpdateThreshold(Duration.ofMillis(500));
         assertNotNull(monitor);
     }
 
     @Test
     public void test_withRefreshThreshold_null_throws_exception() {
         final String message = assertThrows(NullPointerException.class, () -> {
-            LazySystemMonitor.withRefreshThreshold(null);
+            LazySystemMonitor.withUpdateThreshold(null);
         }).getMessage();
 
         assertEquals("refreshThreshold == null", message);
@@ -39,7 +39,7 @@ public class LazySystemMonitorTest {
     @Test
     public void test_withRefreshThreshold_negative_throws_exception() {
         final String message = assertThrows(IllegalArgumentException.class, () -> {
-            LazySystemMonitor.withRefreshThreshold(Duration.ofMillis(-100));
+            LazySystemMonitor.withUpdateThreshold(Duration.ofMillis(-100));
         }).getMessage();
 
         assertEquals("refreshThreshold <= 0", message);
@@ -48,7 +48,7 @@ public class LazySystemMonitorTest {
     @Test
     public void test_withRefreshThreshold_zero_throws_exception() {
         final String message = assertThrows(IllegalArgumentException.class, () -> {
-            LazySystemMonitor.withRefreshThreshold(Duration.ZERO);
+            LazySystemMonitor.withUpdateThreshold(Duration.ZERO);
         }).getMessage();
 
         assertEquals("refreshThreshold <= 0", message);
@@ -56,7 +56,7 @@ public class LazySystemMonitorTest {
 
     @Test
     public void test_caching_behavior_within_threshold() {
-        final LazySystemMonitor monitor = LazySystemMonitor.withRefreshThreshold(Duration.ofSeconds(1));
+        final LazySystemMonitor monitor = LazySystemMonitor.withUpdateThreshold(Duration.ofSeconds(1));
 
         // Get initial values
         final CpuUsage    cpu1    = monitor.getCpuUsage();
@@ -73,7 +73,7 @@ public class LazySystemMonitorTest {
 
     @Test
     public void test_refresh_after_threshold_elapsed() throws InterruptedException {
-        final LazySystemMonitor monitor = LazySystemMonitor.withRefreshThreshold(Duration.ofMillis(100));
+        final LazySystemMonitor monitor = LazySystemMonitor.withUpdateThreshold(Duration.ofMillis(100));
 
         // Get initial values
         final CpuUsage    cpu1    = monitor.getCpuUsage();
@@ -94,7 +94,7 @@ public class LazySystemMonitorTest {
     // This is a very rudimentary test to get CPU and memory usage to increase
     @Test
     public void test_cpu_and_memory_usage_under_load() throws InterruptedException {
-        final LazySystemMonitor monitor     = LazySystemMonitor.withRefreshThreshold(Duration.ofMillis(500));
+        final LazySystemMonitor monitor     = LazySystemMonitor.withUpdateThreshold(Duration.ofMillis(500));
         final int               threadCount = SystemMonitor.getAvailableProcessors();
         final List<PrimeWorker> threads     = new ArrayList<>(threadCount);
 
@@ -189,7 +189,7 @@ public class LazySystemMonitorTest {
 
     @Test
     public void test_usage_after_close_still_works() {
-        final LazySystemMonitor monitor = LazySystemMonitor.withDefaultRefreshThreshold();
+        final LazySystemMonitor monitor = LazySystemMonitor.withDefaultUpdateThreshold();
 
         monitor.close();
 

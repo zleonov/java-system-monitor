@@ -16,15 +16,15 @@ import org.junit.jupiter.api.Test;
 public class BackgroundSystemMonitorTest {
 
     @Test
-    public void test_withDefaultRefreshInterval_not_null() {
-        final BackgroundSystemMonitor monitor = BackgroundSystemMonitor.withDefaultRefreshInterval();
+    public void test_withDefaultUpdateInterval_not_null() {
+        final BackgroundSystemMonitor monitor = BackgroundSystemMonitor.withDefaultUpdateInterval();
         assertNotNull(monitor);
         monitor.close(); // Clean up
     }
 
     @Test
     public void test_refreshEvery_not_null() {
-        final BackgroundSystemMonitor monitor = BackgroundSystemMonitor.refreshEvery(Duration.ofMillis(500));
+        final BackgroundSystemMonitor monitor = BackgroundSystemMonitor.updateEvery(Duration.ofMillis(500));
         assertNotNull(monitor);
         monitor.close(); // Clean up
     }
@@ -32,7 +32,7 @@ public class BackgroundSystemMonitorTest {
     @Test
     public void test_refreshEvery_null_throws_exception() {
         final String message = assertThrows(NullPointerException.class, () -> {
-            BackgroundSystemMonitor.refreshEvery(null);
+            BackgroundSystemMonitor.updateEvery(null);
         }).getMessage();
 
         assertEquals("refreshInterval == null", message);
@@ -41,7 +41,7 @@ public class BackgroundSystemMonitorTest {
     @Test
     public void test_refreshEvery_negative_throws_exception() {
         final String message = assertThrows(IllegalArgumentException.class, () -> {
-            BackgroundSystemMonitor.refreshEvery(Duration.ofMillis(-100));
+            BackgroundSystemMonitor.updateEvery(Duration.ofMillis(-100));
         }).getMessage();
 
         assertEquals("refreshInterval <= 0", message);
@@ -50,7 +50,7 @@ public class BackgroundSystemMonitorTest {
     @Test
     public void test_refreshEvery_zero_throws_exception() {
         final String message = assertThrows(IllegalArgumentException.class, () -> {
-            BackgroundSystemMonitor.refreshEvery(Duration.ZERO);
+            BackgroundSystemMonitor.updateEvery(Duration.ZERO);
         }).getMessage();
 
         assertEquals("refreshInterval <= 0", message);
@@ -58,7 +58,7 @@ public class BackgroundSystemMonitorTest {
 
     @Test
     public void test_before_start_returns_negative_values() {
-        final BackgroundSystemMonitor monitor = BackgroundSystemMonitor.withDefaultRefreshInterval();
+        final BackgroundSystemMonitor monitor = BackgroundSystemMonitor.withDefaultUpdateInterval();
 
         final CpuUsage    cpu    = monitor.getCpuUsage();
         final MemoryUsage memory = monitor.getMemoryUsage();
@@ -76,7 +76,7 @@ public class BackgroundSystemMonitorTest {
 
     @Test
     public void test_start_returns_monitor_instance() {
-        final BackgroundSystemMonitor monitor = BackgroundSystemMonitor.withDefaultRefreshInterval();
+        final BackgroundSystemMonitor monitor = BackgroundSystemMonitor.withDefaultUpdateInterval();
 
         final BackgroundSystemMonitor result = monitor.start();
         assertSame(monitor, result, "start() should return the same monitor instance");
@@ -86,7 +86,7 @@ public class BackgroundSystemMonitorTest {
 
     @Test
     public void test_after_start_returns_real_values() throws InterruptedException {
-        final BackgroundSystemMonitor monitor = BackgroundSystemMonitor.withDefaultRefreshInterval();
+        final BackgroundSystemMonitor monitor = BackgroundSystemMonitor.withDefaultUpdateInterval();
         monitor.start();
 
         // Give background thread time to refresh at least once
@@ -108,7 +108,7 @@ public class BackgroundSystemMonitorTest {
 
     @Test
     public void test_background_refresh_updates_values() throws InterruptedException {
-        final BackgroundSystemMonitor monitor = BackgroundSystemMonitor.refreshEvery(Duration.ofMillis(100));
+        final BackgroundSystemMonitor monitor = BackgroundSystemMonitor.updateEvery(Duration.ofMillis(100));
         monitor.start();
 
         // Wait for initial refresh
@@ -132,7 +132,7 @@ public class BackgroundSystemMonitorTest {
     // This is a very rudimentary test to get CPU and memory usage to increase under load
     @Test
     public void test_cpu_and_memory_usage_under_load() throws InterruptedException {
-        final BackgroundSystemMonitor monitor     = BackgroundSystemMonitor.refreshEvery(Duration.ofMillis(250));
+        final BackgroundSystemMonitor monitor     = BackgroundSystemMonitor.updateEvery(Duration.ofMillis(250));
         final int                     threadCount = SystemMonitor.getAvailableProcessors();
         final List<PrimeWorker>       threads     = new ArrayList<>(threadCount);
 
@@ -232,7 +232,7 @@ public class BackgroundSystemMonitorTest {
 
     @Test
     public void test_stop_method_calls_close() {
-        final BackgroundSystemMonitor monitor = BackgroundSystemMonitor.withDefaultRefreshInterval();
+        final BackgroundSystemMonitor monitor = BackgroundSystemMonitor.withDefaultUpdateInterval();
         monitor.start();
 
         // stop() should delegate to close() - this should not throw
@@ -244,7 +244,7 @@ public class BackgroundSystemMonitorTest {
 
     @Test
     public void test_close_interrupts_background_thread() throws InterruptedException {
-        final BackgroundSystemMonitor monitor = BackgroundSystemMonitor.refreshEvery(Duration.ofMillis(50));
+        final BackgroundSystemMonitor monitor = BackgroundSystemMonitor.updateEvery(Duration.ofMillis(50));
         monitor.start();
 
         // Let it run briefly
@@ -266,7 +266,7 @@ public class BackgroundSystemMonitorTest {
 
     @Test
     public void test_multiple_start_calls_safe() {
-        final BackgroundSystemMonitor monitor = BackgroundSystemMonitor.withDefaultRefreshInterval();
+        final BackgroundSystemMonitor monitor = BackgroundSystemMonitor.withDefaultUpdateInterval();
 
         // First start should work
         monitor.start();
@@ -283,7 +283,7 @@ public class BackgroundSystemMonitorTest {
 
     @Test
     public void test_concurrent_getter_access() throws InterruptedException {
-        final BackgroundSystemMonitor monitor = BackgroundSystemMonitor.refreshEvery(Duration.ofMillis(50));
+        final BackgroundSystemMonitor monitor = BackgroundSystemMonitor.updateEvery(Duration.ofMillis(50));
         monitor.start();
 
         final int         threadCount = 5;
@@ -332,7 +332,7 @@ public class BackgroundSystemMonitorTest {
 
     @Test
     public void test_daemon_thread_behavior() {
-        final BackgroundSystemMonitor monitor = BackgroundSystemMonitor.withDefaultRefreshInterval();
+        final BackgroundSystemMonitor monitor = BackgroundSystemMonitor.withDefaultUpdateInterval();
         monitor.start();
 
         // The background thread should be a daemon thread
@@ -349,7 +349,7 @@ public class BackgroundSystemMonitorTest {
 
     @Test
     public void test_after_stop_returns_unsupported_values() throws InterruptedException {
-        final BackgroundSystemMonitor monitor = BackgroundSystemMonitor.withDefaultRefreshInterval();
+        final BackgroundSystemMonitor monitor = BackgroundSystemMonitor.withDefaultUpdateInterval();
         monitor.start();
 
         // Wait for background thread to start and refresh metrics

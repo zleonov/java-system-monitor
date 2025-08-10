@@ -17,7 +17,7 @@ public class Test {
 
         System.out.println("Available memory: " + availableMemory);
 
-        try (final SystemMonitor monitor = BackgroundSystemMonitor.refreshEvery(Duration.ofSeconds(1))
+        try (final SystemMonitor monitor = BackgroundSystemMonitor.updateEvery(Duration.ofSeconds(1))
                                                                   .start()) { // Don't forget to start() the monitor
 
             CpuUsage    cpu    = monitor.getCpuUsage();

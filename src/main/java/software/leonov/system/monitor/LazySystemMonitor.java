@@ -5,11 +5,11 @@ import static java.util.Objects.requireNonNull;
 import java.time.Duration;
 
 /**
- * A thread-safe {@link SystemMonitor} implementation that refreshes usage metrics on demand.
+ * A thread-safe {@link SystemMonitor} implementation that updates usage metrics on demand.
  * <p>
  * This monitor employs a debouncing mechanism to prevent excessive resource consumption. Usage metrics are updated when
- * either {@link #getCpuUsage()} or {@link #getMemoryUsage()} is called, but only if a refresh threshold has elapsed
- * since the last update. A {@link #withRefreshThreshold(Duration) custom} threshold can be specified when this class is
+ * either {@link #getCpuUsage()} or {@link #getMemoryUsage()} is called, but only if a update threshold has elapsed
+ * since the last update. A {@link #withUpdateThreshold(Duration) custom} threshold can be specified when this class is
  * created.
  * <p>
  * No underlying resources are managed by this monitor. The {@link #close()} method is a no-op and can be safely
@@ -19,64 +19,64 @@ import java.time.Duration;
  */
 public final class LazySystemMonitor extends AbstractSystemMonitor {
 
-    private static final Duration DEFAULT_REFRESH_THRESHOLD = Duration.ofMillis(250);
+    private static final Duration DEFAULT_UPDATE_THRESHOLD = Duration.ofMillis(250);
 
-    private final long refreshThresholdMillis;
-    private long       lastRefreshTimeMillis = -1;
+    private final long updateThresholdMillis;
+    private long       lastUpdateTimeMillis = -1;
 
     LazySystemMonitor() {
-        this(DEFAULT_REFRESH_THRESHOLD);
+        this(DEFAULT_UPDATE_THRESHOLD);
     }
 
-    LazySystemMonitor(final Duration refreshThreshold) {
-        this.refreshThresholdMillis = refreshThreshold.toMillis();
+    LazySystemMonitor(final Duration updateThreshold) {
+        this.updateThresholdMillis = updateThreshold.toMillis();
     }
 
     /**
-     * Creates a new {@link LazySystemMonitor} configured with the default refresh threshold.
+     * Creates a new {@link LazySystemMonitor} configured with the default update threshold.
      * 
-     * @return a new {@link LazySystemMonitor} configured with the default refresh threshold
+     * @return a new {@link LazySystemMonitor} configured with the default update threshold
      */
-    public static LazySystemMonitor withDefaultRefreshThreshold() {
+    public static LazySystemMonitor withDefaultUpdateThreshold() {
         return new LazySystemMonitor();
     }
 
     /**
-     * Creates a new {@link LazySystemMonitor} configured with the specified refresh threshold.
+     * Creates a new {@link LazySystemMonitor} configured with the specified update threshold.
      * <p>
      * Usage metrics are updated when either {@link #getCpuUsage()} or {@link #getMemoryUsage()} is called, unless the
-     * specified {@code refreshThreshold} time has not elapsed since the last update, in which case the most recently cached
+     * specified {@code updateThreshold} time has not elapsed since the last update, in which case the most recently cached
      * values are returned.
      *
-     * @param refreshThreshold the minimum time interval that must elapse between updates
-     * @return a new {@link LazySystemMonitor} configured with the specified refresh threshold
+     * @param updateThreshold the minimum time interval that must elapse between updates
+     * @return a new {@link LazySystemMonitor} configured with the specified update threshold
      */
-    public static LazySystemMonitor withRefreshThreshold(final Duration refreshThreshold) {
-        requireNonNull(refreshThreshold, "refreshThreshold == null");
-        if (refreshThreshold.isNegative() || refreshThreshold.isZero())
-            throw new IllegalArgumentException("refreshThreshold <= 0");
-        return new LazySystemMonitor(refreshThreshold);
+    public static LazySystemMonitor withUpdateThreshold(final Duration updateThreshold) {
+        requireNonNull(updateThreshold, "updateThreshold == null");
+        if (updateThreshold.isNegative() || updateThreshold.isZero())
+            throw new IllegalArgumentException("updateThreshold <= 0");
+        return new LazySystemMonitor(updateThreshold);
     }
 
     @Override
     public CpuUsage getCpuUsage() {
-        refreshMetrics();
+        updateMetrics();
         return super.getCpuUsage();
     }
 
     @Override
     public MemoryUsage getMemoryUsage() {
-        refreshMetrics();
+        updateMetrics();
         return super.getMemoryUsage();
     }
 
     @Override
-    protected synchronized void refreshMetrics() {
+    protected synchronized void updateMetrics() {
         final long currentTimeMillis = System.currentTimeMillis();
 
-        if (lastRefreshTimeMillis == -1 || (currentTimeMillis - lastRefreshTimeMillis) >= refreshThresholdMillis) {
-            super.refreshMetrics();
-            lastRefreshTimeMillis = currentTimeMillis;
+        if (lastUpdateTimeMillis == -1 || (currentTimeMillis - lastUpdateTimeMillis) >= updateThresholdMillis) {
+            super.updateMetrics();
+            lastUpdateTimeMillis = currentTimeMillis;
         }
     }
 

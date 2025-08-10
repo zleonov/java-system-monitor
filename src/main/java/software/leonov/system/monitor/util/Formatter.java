@@ -55,7 +55,7 @@ public final class Formatter {
 
         final int    exp     = (int) (Math.log(bytes) / Math.log(base));
         final char   pre     = PRE.charAt(exp - 1);
-        final String pattern = base == BINARY_UNIT ? "%.2f %siB" : "%.2f %sB";
+        final String pattern = base == BINARY_UNIT ? "%.2f%siB" : "%.2f%sB";
 
         return String.format(pattern, bytes / Math.pow(base, exp), pre);
     }

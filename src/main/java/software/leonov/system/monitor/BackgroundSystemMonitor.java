@@ -3,37 +3,38 @@ package software.leonov.system.monitor;
 import static java.util.Objects.requireNonNull;
 
 import java.time.Duration;
+import java.util.function.BiConsumer;
 
 /**
- * A thread-safe {@link SystemMonitor} implementation that asynchronously refreshes usage metrics using a dedicated
+ * A thread-safe {@link SystemMonitor} implementation that asynchronously updates usage metrics using a dedicated
  * background daemon thread.
  * <p>
- * The monitor can be instantiated using a {@link #withDefaultRefreshInterval() default} or a
- * {@link #refreshEvery(Duration) custom} refresh interval. The background thread must be explicitly started with the
+ * The monitor can be instantiated using a {@link #withDefaultUpdateInterval() default} or a
+ * {@link #updateEvery(Duration) custom} update interval. The background thread must be explicitly started with the
  * {@link #start()} method. To shut down the monitor call {@link #stop()} or {@link #close()}.
  *
  * @author Zhenya Leonov
  */
 public final class BackgroundSystemMonitor extends AbstractSystemMonitor {
 
-    private static final Duration DEFAULT_REFRESH_INTERVAL = Duration.ofMillis(250);
+    private static final Duration DEFAULT_UPDATE_INTERVAL = Duration.ofMillis(250);
 
-    private final long refreshIntervalMillis;
+    private final long updateIntervalMillis;
 
     private final Thread t;
 
     BackgroundSystemMonitor() {
-        this(DEFAULT_REFRESH_INTERVAL);
+        this(DEFAULT_UPDATE_INTERVAL);
     }
 
-    BackgroundSystemMonitor(final Duration refreshInterval) {
-        refreshIntervalMillis = refreshInterval.toMillis();
+    BackgroundSystemMonitor(final Duration updateInterval) {
+        updateIntervalMillis = updateInterval.toMillis();
 
         t = new Thread(() -> {
             try {
                 while (true) {
-                    Thread.sleep(refreshIntervalMillis);
-                    refreshMetrics();
+                    Thread.sleep(updateIntervalMillis);
+                    updateMetrics();
                 }
             } catch (final InterruptedException e) {
                 // Thread is terminating, no need to restore interrupt status because it's "our" thread
@@ -42,31 +43,31 @@ public final class BackgroundSystemMonitor extends AbstractSystemMonitor {
 
         t.setDaemon(true);
 
-        refreshMetrics();
+        super.updateMetrics();
     }
 
     /**
-     * Creates a new {@link BackgroundSystemMonitor} configured with the default refresh interval.
+     * Creates a new {@link BackgroundSystemMonitor} configured with the default update interval.
      *
-     * @return a new {@link BackgroundSystemMonitor} configured with the default refresh interval
+     * @return a new {@link BackgroundSystemMonitor} configured with the default update interval
      */
-    public static BackgroundSystemMonitor withDefaultRefreshInterval() {
+    public static BackgroundSystemMonitor withDefaultUpdateInterval() {
         return new BackgroundSystemMonitor();
     }
 
     /**
-     * Creates a new {@link BackgroundSystemMonitor} configured with the specified refresh interval.
+     * Creates a new {@link BackgroundSystemMonitor} configured with the specified update interval.
      * <p>
-     * The monitor's background thread will refresh all usage metrics after every {@code refreshInterval}.
+     * The monitor's background thread will update all usage metrics after every {@code updateInterval}.
      *
-     * @param refreshInterval the time interval between consecutive metric refreshes
-     * @return a new {@link BackgroundSystemMonitor} configured with the specified refresh interval
+     * @param updateInterval the time interval between consecutive metric updates
+     * @return a new {@link BackgroundSystemMonitor} configured with the specified update interval
      */
-    public static BackgroundSystemMonitor refreshEvery(final Duration refreshInterval) {
-        requireNonNull(refreshInterval, "refreshInterval == null");
-        if (refreshInterval.isNegative() || refreshInterval.isZero())
-            throw new IllegalArgumentException("refreshInterval <= 0");
-        return new BackgroundSystemMonitor(refreshInterval);
+    public static BackgroundSystemMonitor updateEvery(final Duration updateInterval) {
+        requireNonNull(updateInterval, "updateInterval == null");
+        if (updateInterval.isNegative() || updateInterval.isZero())
+            throw new IllegalArgumentException("updateInterval <= 0");
+        return new BackgroundSystemMonitor(updateInterval);
     }
 
     @Override
@@ -79,6 +80,27 @@ public final class BackgroundSystemMonitor extends AbstractSystemMonitor {
         return t.isAlive() ? super.getMemoryUsage() : UnsupportedSystemMonitor.getInstance().getMemoryUsage();
     }
 
+    private BiConsumer<CpuUsage, MemoryUsage> listener = null;
+
+    /**
+     * Registers a listener which will be invoked each time the CPU and memory usage metrics are updated.
+     * 
+     * @param listener the specified listener
+     * @return this {@link BackgroundSystemMonitor} instance
+     */
+    public synchronized BackgroundSystemMonitor registerUpdateListener(final BiConsumer<CpuUsage, MemoryUsage> listener) {
+        requireNonNull(listener, "listener == null");
+        this.listener = listener;
+        return this;
+    }
+
+    @Override
+    protected void updateMetrics() {
+        super.updateMetrics();
+        if (listener != null)
+            listener.accept(getCpuUsage(), getMemoryUsage());
+    }
+
     /**
      * Starts this monitor's background thread.
      * 
@@ -86,6 +108,8 @@ public final class BackgroundSystemMonitor extends AbstractSystemMonitor {
      */
     public BackgroundSystemMonitor start() {
         t.start();
+        if (listener != null)
+            listener.accept(getCpuUsage(), getMemoryUsage());
         return this;
     }
 

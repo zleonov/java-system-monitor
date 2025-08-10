@@ -7,7 +7,7 @@ import java.time.Duration;
 public class LazyMonitorExample {
 
     public static void main(String... strings) throws InterruptedException {
-        try (final SystemMonitor monitor = LazySystemMonitor.withRefreshThreshold(Duration.ofSeconds(1))) {
+        try (final SystemMonitor monitor = LazySystemMonitor.withUpdateThreshold(Duration.ofSeconds(1))) {
             
             Thread.sleep(1000);
             

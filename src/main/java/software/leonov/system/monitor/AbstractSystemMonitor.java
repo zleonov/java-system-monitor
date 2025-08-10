@@ -208,7 +208,7 @@ abstract class AbstractSystemMonitor implements SystemMonitor {
         return totalCpuTime > 0 ? totalCpuTime : -1;
     }
 
-    protected synchronized void refreshMetrics() {
+    protected synchronized void updateMetrics() {
         // Update total memory
         totalMemory = MEMORY_BEAN.getHeapMemoryUsage().getCommitted();
 
