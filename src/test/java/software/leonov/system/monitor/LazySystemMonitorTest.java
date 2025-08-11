@@ -33,7 +33,7 @@ public class LazySystemMonitorTest {
             LazySystemMonitor.withUpdateThreshold(null);
         }).getMessage();
 
-        assertEquals("refreshThreshold == null", message);
+        assertEquals("updateThreshold == null", message);
     }
 
     @Test
@@ -42,7 +42,7 @@ public class LazySystemMonitorTest {
             LazySystemMonitor.withUpdateThreshold(Duration.ofMillis(-100));
         }).getMessage();
 
-        assertEquals("refreshThreshold <= 0", message);
+        assertEquals("updateThreshold <= 0", message);
     }
 
     @Test
@@ -51,7 +51,7 @@ public class LazySystemMonitorTest {
             LazySystemMonitor.withUpdateThreshold(Duration.ZERO);
         }).getMessage();
 
-        assertEquals("refreshThreshold <= 0", message);
+        assertEquals("updateThreshold <= 0", message);
     }
 
     @Test

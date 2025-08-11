@@ -35,7 +35,7 @@ public class BackgroundSystemMonitorTest {
             BackgroundSystemMonitor.updateEvery(null);
         }).getMessage();
 
-        assertEquals("refreshInterval == null", message);
+        assertEquals("updateInterval == null", message);
     }
 
     @Test
@@ -44,7 +44,7 @@ public class BackgroundSystemMonitorTest {
             BackgroundSystemMonitor.updateEvery(Duration.ofMillis(-100));
         }).getMessage();
 
-        assertEquals("refreshInterval <= 0", message);
+        assertEquals("updateInterval <= 0", message);
     }
 
     @Test
@@ -53,7 +53,7 @@ public class BackgroundSystemMonitorTest {
             BackgroundSystemMonitor.updateEvery(Duration.ZERO);
         }).getMessage();
 
-        assertEquals("refreshInterval <= 0", message);
+        assertEquals("updateInterval <= 0", message);
     }
 
     @Test
