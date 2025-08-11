@@ -152,20 +152,20 @@ var activeTableTab = "activeTableTab";
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/CpuUsage.html#getProcessCpuLoad--">getProcessCpuLoad</a></span>()</code>
-<div class="block">Returns the JVM process CPU usage or -1.0 if it is not supported.</div>
+<div class="block">Returns the JVM process CPU usage or -1.0 if it is not supported or not ready.</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/CpuUsage.html#getSystemCpuLoad--">getSystemCpuLoad</a></span>()</code>
-<div class="block">Returns the system-wide CPU usage or -1.0 if it is not supported.</div>
+<div class="block">Returns the system-wide CPU usage or -1.0 if it is not supported or not ready.</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/CpuUsage.html#getSystemLoadAverage--">getSystemLoadAverage</a></span>()</code>
 <div class="block">Returns the system load average for the last minute (only supported on Unix/Linux systems) or -1.0 if it is not
- supported.</div>
+ supported or not ready.</div>
 </td>
 </tr>
 </table>
@@ -190,10 +190,10 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>getProcessCpuLoad</h4>
 <pre>double&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/CpuUsage.html#line.17">getProcessCpuLoad</a>()</pre>
-<div class="block">Returns the JVM process CPU usage or -1.0 if it is not supported.</div>
+<div class="block">Returns the JVM process CPU usage or -1.0 if it is not supported or not ready.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the JVM process CPU usage or -1.0 if it is not supported</dd>
+<dd>the JVM process CPU usage or -1.0 if it is not supported or not ready</dd>
 </dl>
 </li>
 </ul>
@@ -204,10 +204,10 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>getSystemCpuLoad</h4>
 <pre>double&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/CpuUsage.html#line.24">getSystemCpuLoad</a>()</pre>
-<div class="block">Returns the system-wide CPU usage or -1.0 if it is not supported.</div>
+<div class="block">Returns the system-wide CPU usage or -1.0 if it is not supported or not ready.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the system-wide CPU usage or -1.0 if it is not supported</dd>
+<dd>the system-wide CPU usage or -1.0 if it is not supported or not ready</dd>
 </dl>
 </li>
 </ul>
@@ -219,12 +219,12 @@ var activeTableTab = "activeTableTab";
 <h4>getSystemLoadAverage</h4>
 <pre>double&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/CpuUsage.html#line.34">getSystemLoadAverage</a>()</pre>
 <div class="block">Returns the system load average for the last minute (only supported on Unix/Linux systems) or -1.0 if it is not
- supported.
+ supported or not ready.
  <p>
  For more details see <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/management/OperatingSystemMXBean.html?is-external=true#getSystemLoadAverage--" title="class or interface in java.lang.management"><code>OperatingSystemMXBean.getSystemLoadAverage()</code></a>.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the system load average for the last minute or -1.0 if it is not supported</dd>
+<dd>the system load average for the last minute or -1.0 if it is not supported or not ready</dd>
 </dl>
 </li>
 </ul>

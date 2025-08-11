@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":18,"i1":17,"i2":17,"i3":6,"i4":17,"i5":17,"i6":6,"i7":17,"i8":17};
+var methods = {"i0":18,"i1":17,"i2":17,"i3":6,"i4":17,"i5":17,"i6":6,"i7":17,"i8":17,"i9":17,"i10":17};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../software/leonov/system/monitor/MemoryUsage.html" title="interface in software.leonov.system.monitor"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../software/leonov/system/monitor/UnsupportedSystemMonitor.html" title="class in software.leonov.system.monitor"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../software/leonov/system/monitor/Test.html" title="class in software.leonov.system.monitor"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?software/leonov/system/monitor/SystemMonitor.html" target="_top">Frames</a></li>
@@ -186,11 +186,23 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseab
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>static <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#getOperatingSystemName--">getOperatingSystemName</a></span>()</code>
+<div class="block">Returns the Operating System name.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>static <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#getOperatingSystemVersion--">getOperatingSystemVersion</a></span>()</code>
+<div class="block">Returns the Operating System version.</div>
+</td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code>static <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#getSupportedJavaVersion--">getSupportedJavaVersion</a></span>()</code>
 <div class="block">Returns the Java version supported by the Java Virtual Machine (JVM).</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../software/leonov/system/monitor/SystemMonitor.html#isSystemCpuUsageSupported--">isSystemCpuUsageSupported</a></span>()</code>
 <div class="block">Returns whether or not <a href="../../../../software/leonov/system/monitor/CpuUsage.html#getSystemCpuLoad--"><code>CpuUsage.getSystemCpuLoad()</code></a> and <a href="../../../../software/leonov/system/monitor/CpuUsage.html#getAverageSystemCpuLoad--"><code>CpuUsage.getAverageSystemCpuLoad()</code></a> are
@@ -259,13 +271,41 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseab
 </dl>
 </li>
 </ul>
+<a name="getOperatingSystemName--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getOperatingSystemName</h4>
+<pre>static&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/SystemMonitor.html#line.55">getOperatingSystemName</a>()</pre>
+<div class="block">Returns the Operating System name.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the Operating System name</dd>
+</dl>
+</li>
+</ul>
+<a name="getOperatingSystemVersion--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getOperatingSystemVersion</h4>
+<pre>static&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/SystemMonitor.html#line.64">getOperatingSystemVersion</a>()</pre>
+<div class="block">Returns the Operating System version.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the Operating System version</dd>
+</dl>
+</li>
+</ul>
 <a name="getJVMName--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getJVMName</h4>
-<pre>static&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/SystemMonitor.html#line.55">getJVMName</a>()</pre>
+<pre>static&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/SystemMonitor.html#line.73">getJVMName</a>()</pre>
 <div class="block">Returns the Java Virtual Machine (JVM) name.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -279,7 +319,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseab
 <ul class="blockList">
 <li class="blockList">
 <h4>getJVMVendor</h4>
-<pre>static&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/SystemMonitor.html#line.64">getJVMVendor</a>()</pre>
+<pre>static&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/SystemMonitor.html#line.82">getJVMVendor</a>()</pre>
 <div class="block">Returns the Java Virtual Machine (JVM) vendor.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -293,7 +333,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseab
 <ul class="blockList">
 <li class="blockList">
 <h4>getSupportedJavaVersion</h4>
-<pre>static&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/SystemMonitor.html#line.73">getSupportedJavaVersion</a>()</pre>
+<pre>static&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/SystemMonitor.html#line.91">getSupportedJavaVersion</a>()</pre>
 <div class="block">Returns the Java version supported by the Java Virtual Machine (JVM).</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -307,7 +347,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseab
 <ul class="blockList">
 <li class="blockList">
 <h4>getCpuUsage</h4>
-<pre><a href="../../../../software/leonov/system/monitor/CpuUsage.html" title="interface in software.leonov.system.monitor">CpuUsage</a>&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/SystemMonitor.html#line.82">getCpuUsage</a>()</pre>
+<pre><a href="../../../../software/leonov/system/monitor/CpuUsage.html" title="interface in software.leonov.system.monitor">CpuUsage</a>&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/SystemMonitor.html#line.100">getCpuUsage</a>()</pre>
 <div class="block">Returns the Central Processing Unit (CPU) usage metrics.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -321,7 +361,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseab
 <ul class="blockList">
 <li class="blockList">
 <h4>getMemoryUsage</h4>
-<pre><a href="../../../../software/leonov/system/monitor/MemoryUsage.html" title="interface in software.leonov.system.monitor">MemoryUsage</a>&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/SystemMonitor.html#line.89">getMemoryUsage</a>()</pre>
+<pre><a href="../../../../software/leonov/system/monitor/MemoryUsage.html" title="interface in software.leonov.system.monitor">MemoryUsage</a>&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/SystemMonitor.html#line.107">getMemoryUsage</a>()</pre>
 <div class="block">Returns the physical memory (RAM) usage metrics.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -335,7 +375,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseab
 <ul class="blockListLast">
 <li class="blockList">
 <h4>close</h4>
-<pre>default&nbsp;void&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/SystemMonitor.html#line.94">close</a>()</pre>
+<pre>default&nbsp;void&nbsp;<a href="../../../../src-html/software/leonov/system/monitor/SystemMonitor.html#line.112">close</a>()</pre>
 <div class="block">The default implementation of the <code>close</code> method is a no-op.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -372,7 +412,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseab
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../software/leonov/system/monitor/MemoryUsage.html" title="interface in software.leonov.system.monitor"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../software/leonov/system/monitor/UnsupportedSystemMonitor.html" title="class in software.leonov.system.monitor"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../software/leonov/system/monitor/Test.html" title="class in software.leonov.system.monitor"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?software/leonov/system/monitor/SystemMonitor.html" target="_top">Frames</a></li>

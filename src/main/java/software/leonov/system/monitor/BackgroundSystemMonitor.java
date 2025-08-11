@@ -17,11 +17,13 @@ import java.util.function.BiConsumer;
  */
 public final class BackgroundSystemMonitor extends AbstractSystemMonitor {
 
-    private static final Duration DEFAULT_UPDATE_INTERVAL = Duration.ofMillis(250);
+    private static final Duration DEFAULT_UPDATE_INTERVAL = Duration.ofSeconds(1);
 
     private final long updateIntervalMillis;
 
     private final Thread t;
+
+    private volatile BiConsumer<CpuUsage, MemoryUsage> listener = null;
 
     BackgroundSystemMonitor() {
         this(DEFAULT_UPDATE_INTERVAL);
@@ -47,9 +49,9 @@ public final class BackgroundSystemMonitor extends AbstractSystemMonitor {
     }
 
     /**
-     * Creates a new {@link BackgroundSystemMonitor} configured with the default update interval.
+     * Creates a new {@link BackgroundSystemMonitor} configured with the default update interval of 1 second.
      *
-     * @return a new {@link BackgroundSystemMonitor} configured with the default update interval
+     * @return a new {@link BackgroundSystemMonitor} configured with the default update interval of 1 second
      */
     public static BackgroundSystemMonitor withDefaultUpdateInterval() {
         return new BackgroundSystemMonitor();
@@ -80,16 +82,17 @@ public final class BackgroundSystemMonitor extends AbstractSystemMonitor {
         return t.isAlive() ? super.getMemoryUsage() : UnsupportedSystemMonitor.getInstance().getMemoryUsage();
     }
 
-    private BiConsumer<CpuUsage, MemoryUsage> listener = null;
-
     /**
      * Registers a listener which will be invoked each time the CPU and memory usage metrics are updated.
      * 
      * @param listener the specified listener
      * @return this {@link BackgroundSystemMonitor} instance
+     * @throws IllegalStateException if the monitor has already started
      */
-    public synchronized BackgroundSystemMonitor registerUpdateListener(final BiConsumer<CpuUsage, MemoryUsage> listener) {
+    public BackgroundSystemMonitor onUpdate(final BiConsumer<CpuUsage, MemoryUsage> listener) {
         requireNonNull(listener, "listener == null");
+        if (t.isAlive())
+            throw new IllegalStateException("monitor has already started");
         this.listener = listener;
         return this;
     }
@@ -107,9 +110,11 @@ public final class BackgroundSystemMonitor extends AbstractSystemMonitor {
      * @return this monitor instance
      */
     public BackgroundSystemMonitor start() {
-        t.start();
-        if (listener != null)
-            listener.accept(getCpuUsage(), getMemoryUsage());
+        if (!t.isAlive()) {
+            t.start();
+            if (listener != null)
+                listener.accept(getCpuUsage(), getMemoryUsage());
+        }
         return this;
     }
 

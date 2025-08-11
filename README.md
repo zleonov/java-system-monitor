@@ -9,11 +9,11 @@ Java System Monitor provides a simple and efficient way to monitor system resour
 The library is designed to be lightweight, easy to use, and performant, making it suitable for both development and production environments.
 
 Key features:
-- CPU usage monitoring (process and system-wide)
-- Memory usage monitoring with historical tracking
+- CPU (process and system-wide) and memory usage monitoring
+- Point-in-time and aggregate (average / maximum) metrics
 - Multiple monitoring strategies (lazy, background)
 - Minimal overhead
-- Thread-safe implementations
+- Thread-safe implementations for concurrent use
 - 100% pure Java, no external dependencies
 
 Usage Example
@@ -25,16 +25,14 @@ import static software.leonov.system.monitor.util.Formatter.*;
 
 ...
 
-System.out.println("Available processors: " + SystemMonitor.getAvailableProcessors());
+try (SystemMonitor monitor = BackgroundSystemMonitor
+                                    .updateEvery(Duration.ofSeconds(1))
+                                    .onUpdate((cpu, memory) -> {
+                                        logger.info(...);
+                                    })
+                                    .start()) {  // Don't forget to start() the monitor
 
-final String availableMemory = formatDecimalBytes(SystemMonitor.getAvailableMemory());
-System.out.println("Available memory: " + availableMemory);
-
-try (final SystemMonitor monitor = BackgroundSystemMonitor
-                                             .refreshEvery(Duration.ofSeconds(1))
-                                             .start()) { // Don't forget to start() the monitor
-
-    // do work
+    ... // Perform CPU and memory intensive tasks
 
     CpuUsage    cpu    = monitor.getCpuUsage();
     MemoryUsage memory = monitor.getMemoryUsage();
@@ -43,7 +41,9 @@ try (final SystemMonitor monitor = BackgroundSystemMonitor
     System.out.println("Currently using memory: " + formatDecimalBytes(memory.getUsedMemory()) +
                                                                  " out of " + availableMemory);
 
-    // do work
+    ... // Perform more CPU and memory intensive tasks
+    
+    // Finished
 
     cpu    = monitor.getCpuUsage();
     memory = monitor.getMemoryUsage();
@@ -56,6 +56,8 @@ try (final SystemMonitor monitor = BackgroundSystemMonitor
 
 Documentation
 -------------
+Please refer to the [Wiki](https://github.com/zleonov/java-system-monitor/wiki) for details, specifications, API examples, and FAQ.
+
 The latest API documentation can be accessed [here](https://zleonov.github.io/java-system-monitor/api/latest).
 
 Requirements

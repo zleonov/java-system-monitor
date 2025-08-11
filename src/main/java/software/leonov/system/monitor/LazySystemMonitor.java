@@ -7,10 +7,9 @@ import java.time.Duration;
 /**
  * A thread-safe {@link SystemMonitor} implementation that updates usage metrics on demand.
  * <p>
- * This monitor employs a debouncing mechanism to prevent excessive resource consumption. Usage metrics are updated when
- * either {@link #getCpuUsage()} or {@link #getMemoryUsage()} is called, but only if a update threshold has elapsed
- * since the last update. A {@link #withUpdateThreshold(Duration) custom} threshold can be specified when this class is
- * created.
+ * Usage metrics are updated when either {@link #getCpuUsage()} or {@link #getMemoryUsage()} is called, but only if a
+ * update threshold has elapsed since the last update. A {@link #withUpdateThreshold(Duration) custom} threshold can be
+ * specified when this class is created.
  * <p>
  * No underlying resources are managed by this monitor. The {@link #close()} method is a no-op and can be safely
  * ignored.
@@ -19,7 +18,7 @@ import java.time.Duration;
  */
 public final class LazySystemMonitor extends AbstractSystemMonitor {
 
-    private static final Duration DEFAULT_UPDATE_THRESHOLD = Duration.ofMillis(250);
+    private static final Duration DEFAULT_UPDATE_THRESHOLD = Duration.ofSeconds(1);
 
     private final long updateThresholdMillis;
     private long       lastUpdateTimeMillis = -1;
@@ -33,9 +32,9 @@ public final class LazySystemMonitor extends AbstractSystemMonitor {
     }
 
     /**
-     * Creates a new {@link LazySystemMonitor} configured with the default update threshold.
+     * Creates a new {@link LazySystemMonitor} configured with the default update threshold of 1 second.
      * 
-     * @return a new {@link LazySystemMonitor} configured with the default update threshold
+     * @return a new {@link LazySystemMonitor} configured with the default update threshold of 1 second
      */
     public static LazySystemMonitor withDefaultUpdateThreshold() {
         return new LazySystemMonitor();

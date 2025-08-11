@@ -69,14 +69,14 @@
 <!--   -->
 </a></div>
 <!-- ========= END OF TOP NAVBAR ========= -->
-<div class="contentContainer"><a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:W">W</a>&nbsp;<a name="I:B">
+<div class="contentContainer"><a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:W">W</a>&nbsp;<a name="I:B">
 <!--   -->
 </a>
 <h2 class="title">B</h2>
 <dl>
 <dt><a href="software/leonov/system/monitor/BackgroundSystemMonitor.html" title="class in software.leonov.system.monitor"><span class="typeNameLink">BackgroundSystemMonitor</span></a> - Class in <a href="software/leonov/system/monitor/package-summary.html">software.leonov.system.monitor</a></dt>
 <dd>
-<div class="block">A thread-safe <a href="software/leonov/system/monitor/SystemMonitor.html" title="interface in software.leonov.system.monitor"><code>SystemMonitor</code></a> implementation that asynchronously refreshes usage metrics using a dedicated
+<div class="block">A thread-safe <a href="software/leonov/system/monitor/SystemMonitor.html" title="interface in software.leonov.system.monitor"><code>SystemMonitor</code></a> implementation that asynchronously updates usage metrics using a dedicated
  background daemon thread.</div>
 </dd>
 </dl>
@@ -186,9 +186,17 @@
 </dd>
 <dt><span class="memberNameLink"><a href="software/leonov/system/monitor/UnsupportedSystemMonitor.html#getMemoryUsage--">getMemoryUsage()</a></span> - Method in class software.leonov.system.monitor.<a href="software/leonov/system/monitor/UnsupportedSystemMonitor.html" title="class in software.leonov.system.monitor">UnsupportedSystemMonitor</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/SystemMonitor.html#getOperatingSystemName--">getOperatingSystemName()</a></span> - Static method in interface software.leonov.system.monitor.<a href="software/leonov/system/monitor/SystemMonitor.html" title="interface in software.leonov.system.monitor">SystemMonitor</a></dt>
+<dd>
+<div class="block">Returns the Operating System name.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/SystemMonitor.html#getOperatingSystemVersion--">getOperatingSystemVersion()</a></span> - Static method in interface software.leonov.system.monitor.<a href="software/leonov/system/monitor/SystemMonitor.html" title="interface in software.leonov.system.monitor">SystemMonitor</a></dt>
+<dd>
+<div class="block">Returns the Operating System version.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="software/leonov/system/monitor/CpuUsage.html#getProcessCpuLoad--">getProcessCpuLoad()</a></span> - Method in interface software.leonov.system.monitor.<a href="software/leonov/system/monitor/CpuUsage.html" title="interface in software.leonov.system.monitor">CpuUsage</a></dt>
 <dd>
-<div class="block">Returns the JVM process CPU usage or -1.0 if it is not supported.</div>
+<div class="block">Returns the JVM process CPU usage or -1.0 if it is not supported or not ready.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="software/leonov/system/monitor/SystemMonitor.html#getSupportedJavaVersion--">getSupportedJavaVersion()</a></span> - Static method in interface software.leonov.system.monitor.<a href="software/leonov/system/monitor/SystemMonitor.html" title="interface in software.leonov.system.monitor">SystemMonitor</a></dt>
 <dd>
@@ -196,12 +204,12 @@
 </dd>
 <dt><span class="memberNameLink"><a href="software/leonov/system/monitor/CpuUsage.html#getSystemCpuLoad--">getSystemCpuLoad()</a></span> - Method in interface software.leonov.system.monitor.<a href="software/leonov/system/monitor/CpuUsage.html" title="interface in software.leonov.system.monitor">CpuUsage</a></dt>
 <dd>
-<div class="block">Returns the system-wide CPU usage or -1.0 if it is not supported.</div>
+<div class="block">Returns the system-wide CPU usage or -1.0 if it is not supported or not ready.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="software/leonov/system/monitor/CpuUsage.html#getSystemLoadAverage--">getSystemLoadAverage()</a></span> - Method in interface software.leonov.system.monitor.<a href="software/leonov/system/monitor/CpuUsage.html" title="interface in software.leonov.system.monitor">CpuUsage</a></dt>
 <dd>
 <div class="block">Returns the system load average for the last minute (only supported on Unix/Linux systems) or -1.0 if it is not
- supported.</div>
+ supported or not ready.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="software/leonov/system/monitor/MemoryUsage.html#getTotalMemory--">getTotalMemory()</a></span> - Method in interface software.leonov.system.monitor.<a href="software/leonov/system/monitor/MemoryUsage.html" title="interface in software.leonov.system.monitor">MemoryUsage</a></dt>
 <dd>
@@ -231,7 +239,7 @@
 <dl>
 <dt><a href="software/leonov/system/monitor/LazySystemMonitor.html" title="class in software.leonov.system.monitor"><span class="typeNameLink">LazySystemMonitor</span></a> - Class in <a href="software/leonov/system/monitor/package-summary.html">software.leonov.system.monitor</a></dt>
 <dd>
-<div class="block">A thread-safe <a href="software/leonov/system/monitor/SystemMonitor.html" title="interface in software.leonov.system.monitor"><code>SystemMonitor</code></a> implementation that refreshes usage metrics on demand.</div>
+<div class="block">A thread-safe <a href="software/leonov/system/monitor/SystemMonitor.html" title="interface in software.leonov.system.monitor"><code>SystemMonitor</code></a> implementation that updates usage metrics on demand.</div>
 </dd>
 </dl>
 <a name="I:M">
@@ -239,19 +247,21 @@
 </a>
 <h2 class="title">M</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/Test.html#main-java.lang.String:A-">main(String[])</a></span> - Static method in class software.leonov.system.monitor.<a href="software/leonov/system/monitor/Test.html" title="class in software.leonov.system.monitor">Test</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="software/leonov/system/monitor/MemoryUsage.html" title="interface in software.leonov.system.monitor"><span class="typeNameLink">MemoryUsage</span></a> - Interface in <a href="software/leonov/system/monitor/package-summary.html">software.leonov.system.monitor</a></dt>
 <dd>
 <div class="block">The system physical memory (RAM) usage metrics.</div>
 </dd>
 </dl>
-<a name="I:R">
+<a name="I:O">
 <!--   -->
 </a>
-<h2 class="title">R</h2>
+<h2 class="title">O</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/BackgroundSystemMonitor.html#refreshEvery-java.time.Duration-">refreshEvery(Duration)</a></span> - Static method in class software.leonov.system.monitor.<a href="software/leonov/system/monitor/BackgroundSystemMonitor.html" title="class in software.leonov.system.monitor">BackgroundSystemMonitor</a></dt>
+<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/BackgroundSystemMonitor.html#onUpdate-java.util.function.BiConsumer-">onUpdate(BiConsumer&lt;CpuUsage, MemoryUsage&gt;)</a></span> - Method in class software.leonov.system.monitor.<a href="software/leonov/system/monitor/BackgroundSystemMonitor.html" title="class in software.leonov.system.monitor">BackgroundSystemMonitor</a></dt>
 <dd>
-<div class="block">Creates a new <a href="software/leonov/system/monitor/BackgroundSystemMonitor.html" title="class in software.leonov.system.monitor"><code>BackgroundSystemMonitor</code></a> configured with the specified refresh interval.</div>
+<div class="block">Registers a listener which will be invoked each time the CPU and memory usage metrics are updated.</div>
 </dd>
 </dl>
 <a name="I:S">
@@ -280,6 +290,16 @@
 <div class="block">Monitors Java Virtual Machine (JVM) and system-level resource usage such as CPU and memory.</div>
 </dd>
 </dl>
+<a name="I:T">
+<!--   -->
+</a>
+<h2 class="title">T</h2>
+<dl>
+<dt><a href="software/leonov/system/monitor/Test.html" title="class in software.leonov.system.monitor"><span class="typeNameLink">Test</span></a> - Class in <a href="software/leonov/system/monitor/package-summary.html">software.leonov.system.monitor</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/Test.html#Test--">Test()</a></span> - Constructor for class software.leonov.system.monitor.<a href="software/leonov/system/monitor/Test.html" title="class in software.leonov.system.monitor">Test</a></dt>
+<dd>&nbsp;</dd>
+</dl>
 <a name="I:U">
 <!--   -->
 </a>
@@ -289,26 +309,30 @@
 <dd>
 <div class="block">A <a href="software/leonov/system/monitor/SystemMonitor.html" title="interface in software.leonov.system.monitor"><code>SystemMonitor</code></a> that does nothing.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/BackgroundSystemMonitor.html#updateEvery-java.time.Duration-">updateEvery(Duration)</a></span> - Static method in class software.leonov.system.monitor.<a href="software/leonov/system/monitor/BackgroundSystemMonitor.html" title="class in software.leonov.system.monitor">BackgroundSystemMonitor</a></dt>
+<dd>
+<div class="block">Creates a new <a href="software/leonov/system/monitor/BackgroundSystemMonitor.html" title="class in software.leonov.system.monitor"><code>BackgroundSystemMonitor</code></a> configured with the specified update interval.</div>
+</dd>
 </dl>
 <a name="I:W">
 <!--   -->
 </a>
 <h2 class="title">W</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/BackgroundSystemMonitor.html#withDefaultRefreshInterval--">withDefaultRefreshInterval()</a></span> - Static method in class software.leonov.system.monitor.<a href="software/leonov/system/monitor/BackgroundSystemMonitor.html" title="class in software.leonov.system.monitor">BackgroundSystemMonitor</a></dt>
+<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/BackgroundSystemMonitor.html#withDefaultUpdateInterval--">withDefaultUpdateInterval()</a></span> - Static method in class software.leonov.system.monitor.<a href="software/leonov/system/monitor/BackgroundSystemMonitor.html" title="class in software.leonov.system.monitor">BackgroundSystemMonitor</a></dt>
 <dd>
-<div class="block">Creates a new <a href="software/leonov/system/monitor/BackgroundSystemMonitor.html" title="class in software.leonov.system.monitor"><code>BackgroundSystemMonitor</code></a> configured with the default refresh interval.</div>
+<div class="block">Creates a new <a href="software/leonov/system/monitor/BackgroundSystemMonitor.html" title="class in software.leonov.system.monitor"><code>BackgroundSystemMonitor</code></a> configured with the default update interval.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/LazySystemMonitor.html#withDefaultRefreshThreshold--">withDefaultRefreshThreshold()</a></span> - Static method in class software.leonov.system.monitor.<a href="software/leonov/system/monitor/LazySystemMonitor.html" title="class in software.leonov.system.monitor">LazySystemMonitor</a></dt>
+<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/LazySystemMonitor.html#withDefaultUpdateThreshold--">withDefaultUpdateThreshold()</a></span> - Static method in class software.leonov.system.monitor.<a href="software/leonov/system/monitor/LazySystemMonitor.html" title="class in software.leonov.system.monitor">LazySystemMonitor</a></dt>
 <dd>
-<div class="block">Creates a new <a href="software/leonov/system/monitor/LazySystemMonitor.html" title="class in software.leonov.system.monitor"><code>LazySystemMonitor</code></a> configured with the default refresh threshold.</div>
+<div class="block">Creates a new <a href="software/leonov/system/monitor/LazySystemMonitor.html" title="class in software.leonov.system.monitor"><code>LazySystemMonitor</code></a> configured with the default update threshold.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/LazySystemMonitor.html#withRefreshThreshold-java.time.Duration-">withRefreshThreshold(Duration)</a></span> - Static method in class software.leonov.system.monitor.<a href="software/leonov/system/monitor/LazySystemMonitor.html" title="class in software.leonov.system.monitor">LazySystemMonitor</a></dt>
+<dt><span class="memberNameLink"><a href="software/leonov/system/monitor/LazySystemMonitor.html#withUpdateThreshold-java.time.Duration-">withUpdateThreshold(Duration)</a></span> - Static method in class software.leonov.system.monitor.<a href="software/leonov/system/monitor/LazySystemMonitor.html" title="class in software.leonov.system.monitor">LazySystemMonitor</a></dt>
 <dd>
-<div class="block">Creates a new <a href="software/leonov/system/monitor/LazySystemMonitor.html" title="class in software.leonov.system.monitor"><code>LazySystemMonitor</code></a> configured with the specified refresh threshold.</div>
+<div class="block">Creates a new <a href="software/leonov/system/monitor/LazySystemMonitor.html" title="class in software.leonov.system.monitor"><code>LazySystemMonitor</code></a> configured with the specified update threshold.</div>
 </dd>
 </dl>
-<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:W">W</a>&nbsp;</div>
+<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:W">W</a>&nbsp;</div>
 <!-- ======= START OF BOTTOM NAVBAR ====== -->
 <div class="bottomNav"><a name="navbar.bottom">
 <!--   -->
