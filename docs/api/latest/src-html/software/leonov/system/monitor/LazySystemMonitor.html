@@ -26,7 +26,7 @@
 <span class="sourceLineNo">018</span> */<a name="line.18"></a>
 <span class="sourceLineNo">019</span>public final class LazySystemMonitor extends AbstractSystemMonitor {<a name="line.19"></a>
 <span class="sourceLineNo">020</span><a name="line.20"></a>
-<span class="sourceLineNo">021</span>    private static final Duration DEFAULT_UPDATE_THRESHOLD = Duration.ofMillis(250);<a name="line.21"></a>
+<span class="sourceLineNo">021</span>    private static final Duration DEFAULT_UPDATE_THRESHOLD = Duration.ofSeconds(1);<a name="line.21"></a>
 <span class="sourceLineNo">022</span><a name="line.22"></a>
 <span class="sourceLineNo">023</span>    private final long updateThresholdMillis;<a name="line.23"></a>
 <span class="sourceLineNo">024</span>    private long       lastUpdateTimeMillis = -1;<a name="line.24"></a>
@@ -40,9 +40,9 @@
 <span class="sourceLineNo">032</span>    }<a name="line.32"></a>
 <span class="sourceLineNo">033</span><a name="line.33"></a>
 <span class="sourceLineNo">034</span>    /**<a name="line.34"></a>
-<span class="sourceLineNo">035</span>     * Creates a new {@link LazySystemMonitor} configured with the default update threshold.<a name="line.35"></a>
+<span class="sourceLineNo">035</span>     * Creates a new {@link LazySystemMonitor} configured with the default update threshold of 1 second.<a name="line.35"></a>
 <span class="sourceLineNo">036</span>     * <a name="line.36"></a>
-<span class="sourceLineNo">037</span>     * @return a new {@link LazySystemMonitor} configured with the default update threshold<a name="line.37"></a>
+<span class="sourceLineNo">037</span>     * @return a new {@link LazySystemMonitor} configured with the default update threshold of 1 second<a name="line.37"></a>
 <span class="sourceLineNo">038</span>     */<a name="line.38"></a>
 <span class="sourceLineNo">039</span>    public static LazySystemMonitor withDefaultUpdateThreshold() {<a name="line.39"></a>
 <span class="sourceLineNo">040</span>        return new LazySystemMonitor();<a name="line.40"></a>
