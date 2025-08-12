@@ -19,28 +19,25 @@ try (SystemMonitor monitor = BackgroundSystemMonitor
                                     .onUpdate((cpu, memory) -> {
                                         logger.info(...);
                                     })
-                                    .start()) {  // Don't forget to start() the monitor
+                                    .start()) { // Don't forget to start the monitor
 
     // Perform CPU and memory intensive tasks
 
     final CpuUsage    cpu    = monitor.getCpuUsage();
     final MemoryUsage memory = monitor.getMemoryUsage();
 
-    System.out.println("Current CPU load: " + formatPercent(cpu.getSystemCpuLoad()));
-    System.out.println("Currently using memory: " + formatDecimalBytes(memory.getUsedMemory()) +
-                                                                 " out of " + availableMemory);
-
-    // Perform more CPU and memory intensive tasks
+    System.out.printf("Current CPU load: %s%n", formatPercent(cpu.getSystemCpuLoad()));
+    System.out.printf("Currently using memory: %s out of %s%n", formatDecimalBytes(memory.getUsedMemory()), availableMemory);
     
     // Finished
 
     cpu    = monitor.getCpuUsage();
     memory = monitor.getMemoryUsage();
 
-    System.out.println("Average CPU load: " + formatPercent(cpu.getAverageSystemCpuLoad()));
-    System.out.println("Maximum used memory: " + formatDecimalBytes(memory.getMaxUsedMemory()));
+    System.out.printf("Average CPU load: %s%n", formatPercent(cpu.getAverageSystemCpuLoad()));
+    System.out.printf("Maximum used memory: %s%n", formatDecimalBytes(memory.getMaxUsedMemory()));
 
-} // Automatically stop() the monitor
+} // Automatically close/stop the monitor
 ```
 
 Documentation
