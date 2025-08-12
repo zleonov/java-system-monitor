@@ -27,7 +27,8 @@ try (SystemMonitor monitor = BackgroundSystemMonitor
     final MemoryUsage memory = monitor.getMemoryUsage();
 
     System.out.printf("Current CPU load: %s%n", formatPercent(cpu.getSystemCpuLoad()));
-    System.out.printf("Currently using memory: %s out of %s%n", formatDecimalBytes(memory.getUsedMemory()), availableMemory);
+    System.out.printf("Currently using memory: %s out of %s%n", formatDecimalBytes(memory.getUsedMemory()),
+                                                                                   availableMemory);
     
     // Finished
 
