@@ -26,17 +26,16 @@ try (SystemMonitor monitor = BackgroundSystemMonitor
     final CpuUsage    cpu    = monitor.getCpuUsage();
     final MemoryUsage memory = monitor.getMemoryUsage();
 
-    System.out.printf("Current CPU load: %s%n", formatPercent(cpu.getSystemCpuLoad()));
-    System.out.printf("Currently using memory: %s out of %s%n", formatDecimalBytes(memory.getUsedMemory()),
-                                                                                   availableMemory);
+    logger.info("Current CPU load: %s", formatPercent(cpu.getSystemCpuLoad()));
+    logger.info("Currently using memory: %s out of %s", formatDecimalBytes(memory.getUsedMemory()), availableMemory);
     
     // Finished
 
     cpu    = monitor.getCpuUsage();
     memory = monitor.getMemoryUsage();
 
-    System.out.printf("Average CPU load: %s%n", formatPercent(cpu.getAverageSystemCpuLoad()));
-    System.out.printf("Maximum used memory: %s%n", formatDecimalBytes(memory.getMaxUsedMemory()));
+    logger.info("Average CPU load: %s", formatPercent(cpu.getAverageSystemCpuLoad()));
+    logger.info("Maximum used memory: %s", formatDecimalBytes(memory.getMaxUsedMemory()));
 
 } // Automatically close/stop the monitor
 ```
