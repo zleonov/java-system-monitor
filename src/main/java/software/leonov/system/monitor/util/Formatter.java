@@ -20,17 +20,17 @@ public final class Formatter {
      * Formats the given percent value into a human-readable string.
      * 
      * @param pct the percent value to format
-     * @return a formatted string (e.g., 12.75%) or "-1" if the value is negative
+     * @return a formatted string (e.g., 12.75%) or "N/A" if the value is negative
      */
     public static String formatPercent(final double pct) {
-        return pct < 0 ? "-1" : String.format("%.2f%%", pct);
+        return pct < 0 ? "N/A" : String.format("%.2f%%", pct);
     }
 
     /**
      * Formats the given number of bytes into a human-readable string in the binary (1024) base unit.
      *
      * @param bytes the number of bytes to format
-     * @return a formatted string (e.g., "1.23 MiB") or "-1" if the value is negative
+     * @return a formatted string (e.g., "1.23 MiB") or "N/A" if the value is negative
      */
     public static String formatBinaryBytes(final long bytes) {
         return formatBytes(bytes, BINARY_UNIT);
@@ -40,7 +40,7 @@ public final class Formatter {
      * Formats the given number of bytes into a human-readable string in the decimal (1000) base unit.
      *
      * @param bytes the number of bytes to format
-     * @return a formatted string (e.g., "1.23 MB") or "-1" if the value is negative
+     * @return a formatted string (e.g., "1.23 MB") or "N/A" if the value is negative
      */
     public static String formatDecimalBytes(final long bytes) {
         return formatBytes(bytes, DECIMAL_UNIT);
@@ -48,7 +48,7 @@ public final class Formatter {
 
     private static String formatBytes(final long bytes, final int base) {
         if (bytes < 0)
-            return "-1";
+            return "N/A";
 
         if (bytes < base)
             return bytes + " bytes";

@@ -8,9 +8,9 @@ public class FormatterTest {
 
     @Test
     public void test_formatPercent_negative_values() {
-        assertEquals("-1", Formatter.formatPercent(-1.0));
-        assertEquals("-1", Formatter.formatPercent(-0.5));
-        assertEquals("-1", Formatter.formatPercent(-100.0));
+        assertEquals("N/A", Formatter.formatPercent(-1.0));
+        assertEquals("N/A", Formatter.formatPercent(-0.5));
+        assertEquals("N/A", Formatter.formatPercent(-100.0));
     }
 
     @Test
@@ -36,8 +36,8 @@ public class FormatterTest {
 
     @Test
     public void test_formatBinaryBytes_negative_values() {
-        assertEquals("-1", Formatter.formatBinaryBytes(-1L));
-        assertEquals("-1", Formatter.formatBinaryBytes(-1024L));
+        assertEquals("N/A", Formatter.formatBinaryBytes(-1L));
+        assertEquals("N/A", Formatter.formatBinaryBytes(-1024L));
     }
 
     @Test
@@ -50,34 +50,34 @@ public class FormatterTest {
 
     @Test
     public void test_formatBinaryBytes_kibibytes() {
-        assertEquals("1.00 KiB", Formatter.formatBinaryBytes(1024L));
-        assertEquals("1.50 KiB", Formatter.formatBinaryBytes(1536L));
-        assertEquals("2.00 KiB", Formatter.formatBinaryBytes(2048L));
+        assertEquals("1.00KiB", Formatter.formatBinaryBytes(1024L));
+        assertEquals("1.50KiB", Formatter.formatBinaryBytes(1536L));
+        assertEquals("2.00KiB", Formatter.formatBinaryBytes(2048L));
     }
 
     @Test
     public void test_formatBinaryBytes_mebibytes() {
-        assertEquals("1.00 MiB", Formatter.formatBinaryBytes(1024L * 1024L));
-        assertEquals("1.50 MiB", Formatter.formatBinaryBytes(1024L * 1024L + 512L * 1024L));
-        assertEquals("2.00 MiB", Formatter.formatBinaryBytes(2L * 1024L * 1024L));
+        assertEquals("1.00MiB", Formatter.formatBinaryBytes(1024L * 1024L));
+        assertEquals("1.50MiB", Formatter.formatBinaryBytes(1024L * 1024L + 512L * 1024L));
+        assertEquals("2.00MiB", Formatter.formatBinaryBytes(2L * 1024L * 1024L));
     }
 
     @Test
     public void test_formatBinaryBytes_gibibytes() {
-        assertEquals("1.00 GiB", Formatter.formatBinaryBytes(1024L * 1024L * 1024L));
-        assertEquals("4.00 GiB", Formatter.formatBinaryBytes(4L * 1024L * 1024L * 1024L));
+        assertEquals("1.00GiB", Formatter.formatBinaryBytes(1024L * 1024L * 1024L));
+        assertEquals("4.00GiB", Formatter.formatBinaryBytes(4L * 1024L * 1024L * 1024L));
     }
 
     @Test
     public void test_formatBinaryBytes_tebibytes() {
-        assertEquals("1.00 TiB", Formatter.formatBinaryBytes(1024L * 1024L * 1024L * 1024L));
-        assertEquals("2.50 TiB", Formatter.formatBinaryBytes(2L * 1024L * 1024L * 1024L * 1024L + 512L * 1024L * 1024L * 1024L));
+        assertEquals("1.00TiB", Formatter.formatBinaryBytes(1024L * 1024L * 1024L * 1024L));
+        assertEquals("2.50TiB", Formatter.formatBinaryBytes(2L * 1024L * 1024L * 1024L * 1024L + 512L * 1024L * 1024L * 1024L));
     }
 
     @Test
     public void test_formatDecimalBytes_negative_values() {
-        assertEquals("-1", Formatter.formatDecimalBytes(-1L));
-        assertEquals("-1", Formatter.formatDecimalBytes(-1000L));
+        assertEquals("N/A", Formatter.formatDecimalBytes(-1L));
+        assertEquals("N/A", Formatter.formatDecimalBytes(-1000L));
     }
 
     @Test
@@ -90,47 +90,47 @@ public class FormatterTest {
 
     @Test
     public void test_formatDecimalBytes_kilobytes() {
-        assertEquals("1.00 KB", Formatter.formatDecimalBytes(1000L));
-        assertEquals("1.50 KB", Formatter.formatDecimalBytes(1500L));
-        assertEquals("2.00 KB", Formatter.formatDecimalBytes(2000L));
+        assertEquals("1.00KB", Formatter.formatDecimalBytes(1000L));
+        assertEquals("1.50KB", Formatter.formatDecimalBytes(1500L));
+        assertEquals("2.00KB", Formatter.formatDecimalBytes(2000L));
     }
 
     @Test
     public void test_formatDecimalBytes_megabytes() {
-        assertEquals("1.00 MB", Formatter.formatDecimalBytes(1000L * 1000L));
-        assertEquals("1.50 MB", Formatter.formatDecimalBytes(1000L * 1000L + 500L * 1000L));
-        assertEquals("2.00 MB", Formatter.formatDecimalBytes(2L * 1000L * 1000L));
+        assertEquals("1.00MB", Formatter.formatDecimalBytes(1000L * 1000L));
+        assertEquals("1.50MB", Formatter.formatDecimalBytes(1000L * 1000L + 500L * 1000L));
+        assertEquals("2.00MB", Formatter.formatDecimalBytes(2L * 1000L * 1000L));
     }
 
     @Test
     public void test_formatDecimalBytes_gigabytes() {
-        assertEquals("1.00 GB", Formatter.formatDecimalBytes(1000L * 1000L * 1000L));
-        assertEquals("4.00 GB", Formatter.formatDecimalBytes(4L * 1000L * 1000L * 1000L));
+        assertEquals("1.00GB", Formatter.formatDecimalBytes(1000L * 1000L * 1000L));
+        assertEquals("4.00GB", Formatter.formatDecimalBytes(4L * 1000L * 1000L * 1000L));
     }
 
     @Test
     public void test_formatDecimalBytes_terabytes() {
-        assertEquals("1.00 TB", Formatter.formatDecimalBytes(1000L * 1000L * 1000L * 1000L));
-        assertEquals("2.50 TB", Formatter.formatDecimalBytes(2L * 1000L * 1000L * 1000L * 1000L + 500L * 1000L * 1000L * 1000L));
+        assertEquals("1.00TB", Formatter.formatDecimalBytes(1000L * 1000L * 1000L * 1000L));
+        assertEquals("2.50TB", Formatter.formatDecimalBytes(2L * 1000L * 1000L * 1000L * 1000L + 500L * 1000L * 1000L * 1000L));
     }
 
     @Test
     public void test_formatDecimalBytes_petabytes() {
-        assertEquals("1.00 PB", Formatter.formatDecimalBytes(1000L * 1000L * 1000L * 1000L * 1000L));
+        assertEquals("1.00PB", Formatter.formatDecimalBytes(1000L * 1000L * 1000L * 1000L * 1000L));
     }
 
     @Test
     public void test_formatBinaryBytes_pebibytes() {
-        assertEquals("1.00 PiB", Formatter.formatBinaryBytes(1024L * 1024L * 1024L * 1024L * 1024L));
+        assertEquals("1.00PiB", Formatter.formatBinaryBytes(1024L * 1024L * 1024L * 1024L * 1024L));
     }
 
     @Test
     public void test_formatBinaryBytes_exbibytes() {
-        assertEquals("1.00 EiB", Formatter.formatBinaryBytes(1024L * 1024L * 1024L * 1024L * 1024L * 1024L));
+        assertEquals("1.00EiB", Formatter.formatBinaryBytes(1024L * 1024L * 1024L * 1024L * 1024L * 1024L));
     }
 
     @Test
     public void test_formatDecimalBytes_exabytes() {
-        assertEquals("1.00 EB", Formatter.formatDecimalBytes(1000L * 1000L * 1000L * 1000L * 1000L * 1000L));
+        assertEquals("1.00EB", Formatter.formatDecimalBytes(1000L * 1000L * 1000L * 1000L * 1000L * 1000L));
     }
 }
