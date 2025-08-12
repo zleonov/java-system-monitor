@@ -16,7 +16,7 @@ import static software.leonov.system.monitor.util.Formatter.*;
 import static java.lang.System.out;
 ...
 try (final BackgroundSystemMonitor monitor = BackgroundSystemMonitor
-                    .updateEvery(Duration.ofMillis(100))
+                    .updateEvery(Duration.ofSeconds(1))
                     .onUpdate((cpu, memory) ->
                         out.printf("process-cpu: %s, system-cpu; %s used-memory: %s%n", formatPercent(cpu.getProcessCpuLoad()), formatPercent(cpu.getSystemCpuLoad()), formatDecimalBytes(memory.getUsedMemory())))
                     .onClose((cpu, memory) ->
