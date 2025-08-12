@@ -25,7 +25,7 @@ try (final BackgroundSystemMonitor monitor = BackgroundSystemMonitor
 
         ... // Do work
 
-        } // Automatically close/stop monitor
+} // Automatically close/stop monitor
 ```
 
 Documentation
