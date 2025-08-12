@@ -106,23 +106,29 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../software/leonov/system/monitor/BackgroundSystemMonitor.html" title="class in software.leonov.system.monitor">BackgroundSystemMonitor</a></code></td>
-<td class="colLast"><span class="typeNameLabel">BackgroundSystemMonitor.</span><code><span class="memberNameLink"><a href="../../../../../software/leonov/system/monitor/BackgroundSystemMonitor.html#onUpdate-java.util.function.BiConsumer-">onUpdate</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/BiConsumer.html?is-external=true" title="class or interface in java.util.function">BiConsumer</a>&lt;<a href="../../../../../software/leonov/system/monitor/CpuUsage.html" title="interface in software.leonov.system.monitor">CpuUsage</a>,<a href="../../../../../software/leonov/system/monitor/MemoryUsage.html" title="interface in software.leonov.system.monitor">MemoryUsage</a>&gt;&nbsp;listener)</code>
-<div class="block">Registers a listener which will be invoked each time the CPU and memory usage metrics are updated.</div>
+<td class="colLast"><span class="typeNameLabel">BackgroundSystemMonitor.</span><code><span class="memberNameLink"><a href="../../../../../software/leonov/system/monitor/BackgroundSystemMonitor.html#onClose-java.util.function.BiConsumer-">onClose</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/BiConsumer.html?is-external=true" title="class or interface in java.util.function">BiConsumer</a>&lt;<a href="../../../../../software/leonov/system/monitor/CpuUsage.html" title="interface in software.leonov.system.monitor">CpuUsage</a>,<a href="../../../../../software/leonov/system/monitor/MemoryUsage.html" title="interface in software.leonov.system.monitor">MemoryUsage</a>&gt;&nbsp;closeListener)</code>
+<div class="block">Registers a listener which will be invoked when this monitor <a href="../../../../../software/leonov/system/monitor/BackgroundSystemMonitor.html#close--"><code>closes</code></a>.</div>
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../software/leonov/system/monitor/BackgroundSystemMonitor.html" title="class in software.leonov.system.monitor">BackgroundSystemMonitor</a></code></td>
+<td class="colLast"><span class="typeNameLabel">BackgroundSystemMonitor.</span><code><span class="memberNameLink"><a href="../../../../../software/leonov/system/monitor/BackgroundSystemMonitor.html#onUpdate-java.util.function.BiConsumer-">onUpdate</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/BiConsumer.html?is-external=true" title="class or interface in java.util.function">BiConsumer</a>&lt;<a href="../../../../../software/leonov/system/monitor/CpuUsage.html" title="interface in software.leonov.system.monitor">CpuUsage</a>,<a href="../../../../../software/leonov/system/monitor/MemoryUsage.html" title="interface in software.leonov.system.monitor">MemoryUsage</a>&gt;&nbsp;updateListener)</code>
+<div class="block">Registers a listener which will be invoked each time the CPU and memory usage metrics are updated.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../software/leonov/system/monitor/BackgroundSystemMonitor.html" title="class in software.leonov.system.monitor">BackgroundSystemMonitor</a></code></td>
 <td class="colLast"><span class="typeNameLabel">BackgroundSystemMonitor.</span><code><span class="memberNameLink"><a href="../../../../../software/leonov/system/monitor/BackgroundSystemMonitor.html#start--">start</a></span>()</code>
 <div class="block">Starts this monitor's background thread.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../../software/leonov/system/monitor/BackgroundSystemMonitor.html" title="class in software.leonov.system.monitor">BackgroundSystemMonitor</a></code></td>
 <td class="colLast"><span class="typeNameLabel">BackgroundSystemMonitor.</span><code><span class="memberNameLink"><a href="../../../../../software/leonov/system/monitor/BackgroundSystemMonitor.html#updateEvery-java.time.Duration-">updateEvery</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;updateInterval)</code>
 <div class="block">Creates a new <a href="../../../../../software/leonov/system/monitor/BackgroundSystemMonitor.html" title="class in software.leonov.system.monitor"><code>BackgroundSystemMonitor</code></a> configured with the specified update interval.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static <a href="../../../../../software/leonov/system/monitor/BackgroundSystemMonitor.html" title="class in software.leonov.system.monitor">BackgroundSystemMonitor</a></code></td>
 <td class="colLast"><span class="typeNameLabel">BackgroundSystemMonitor.</span><code><span class="memberNameLink"><a href="../../../../../software/leonov/system/monitor/BackgroundSystemMonitor.html#withDefaultUpdateInterval--">withDefaultUpdateInterval</a></span>()</code>
 <div class="block">Creates a new <a href="../../../../../software/leonov/system/monitor/BackgroundSystemMonitor.html" title="class in software.leonov.system.monitor"><code>BackgroundSystemMonitor</code></a> configured with the default update interval of 1 second.</div>
