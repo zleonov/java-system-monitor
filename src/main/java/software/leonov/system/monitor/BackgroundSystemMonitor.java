@@ -23,7 +23,8 @@ public final class BackgroundSystemMonitor extends AbstractSystemMonitor {
 
     private final Thread t;
 
-    private volatile BiConsumer<CpuUsage, MemoryUsage> listener = null;
+    private volatile BiConsumer<CpuUsage, MemoryUsage> updateListener = null;
+    private volatile BiConsumer<CpuUsage, MemoryUsage> closeListener  = null;
 
     BackgroundSystemMonitor() {
         this(DEFAULT_UPDATE_INTERVAL);
@@ -85,23 +86,38 @@ public final class BackgroundSystemMonitor extends AbstractSystemMonitor {
     /**
      * Registers a listener which will be invoked each time the CPU and memory usage metrics are updated.
      * 
-     * @param listener the specified listener
+     * @param updateListener the specified listener
      * @return this {@link BackgroundSystemMonitor} instance
      * @throws IllegalStateException if the monitor has already started
      */
-    public BackgroundSystemMonitor onUpdate(final BiConsumer<CpuUsage, MemoryUsage> listener) {
-        requireNonNull(listener, "listener == null");
-        if (t.isAlive())
+    public BackgroundSystemMonitor onUpdate(final BiConsumer<CpuUsage, MemoryUsage> updateListener) {
+        requireNonNull(updateListener, "updateListener == null");
+        if (t.getState() != Thread.State.NEW)
             throw new IllegalStateException("monitor has already started");
-        this.listener = listener;
+        this.updateListener = updateListener;
+        return this;
+    }
+
+    /**
+     * Registers a listener which will be invoked when this monitor {@link #close() closes}.
+     * 
+     * @param closeListener the specified listener
+     * @return this {@link BackgroundSystemMonitor} instance
+     * @throws IllegalStateException if the monitor has already started
+     */
+    public BackgroundSystemMonitor onClose(final BiConsumer<CpuUsage, MemoryUsage> closeListener) {
+        requireNonNull(closeListener, "closeListener == null");
+        if (t.getState() != Thread.State.NEW)
+            throw new IllegalStateException("monitor has already started");
+        this.closeListener = closeListener;
         return this;
     }
 
     @Override
     protected void updateMetrics() {
         super.updateMetrics();
-        if (listener != null)
-            listener.accept(getCpuUsage(), getMemoryUsage());
+        if (updateListener != null)
+            updateListener.accept(getCpuUsage(), getMemoryUsage());
     }
 
     /**
@@ -112,8 +128,8 @@ public final class BackgroundSystemMonitor extends AbstractSystemMonitor {
     public BackgroundSystemMonitor start() {
         if (!t.isAlive()) {
             t.start();
-            if (listener != null)
-                listener.accept(getCpuUsage(), getMemoryUsage());
+            if (updateListener != null)
+                updateListener.accept(getCpuUsage(), getMemoryUsage());
         }
         return this;
     }
@@ -138,6 +154,9 @@ public final class BackgroundSystemMonitor extends AbstractSystemMonitor {
             t.join();
         } catch (final InterruptedException e) {
             Thread.currentThread().interrupt();
+        } finally {
+            if (closeListener != null)
+                closeListener.accept(super.getCpuUsage(), super.getMemoryUsage());
         }
     }
 

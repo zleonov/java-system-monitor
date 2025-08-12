@@ -13,22 +13,19 @@ Usage example
 
 ```java
 import static software.leonov.system.monitor.util.Formatter.*;
+import static java.lang.System.out;
 ...
-final String availableMemory = formatDecimalBytes(SystemMonitor.getAvailableMemory());
-...
-try (SystemMonitor monitor = BackgroundSystemMonitor
-                               .updateEvery(Duration.ofSeconds(1))
-                               .onUpdate((cpu, memory) -> {
-                                   final String cpuLoad = formatPercent(cpu.getSystemCpuLoad());
-                                   final String usedMemory = formatDecimalBytes(memory.getUsedMemory());
-                                   logger.info("Current CPU load: %s", cpuLoad);
-                                   logger.info("Currently using memory: %s out of %s", usedMemory, availableMemory);
-                               })
-                               .start()) { // Don't forget to start the monitor
-                               
-    ... // Perform CPU and memory intensive tasks
+try (final BackgroundSystemMonitor monitor = BackgroundSystemMonitor
+                    .updateEvery(Duration.ofMillis(100))
+                    .onUpdate((cpu, memory) ->
+                        out.printf("process-cpu: %s, system-cpu; %s used-memory: %s%n", formatPercent(cpu.getProcessCpuLoad()), formatPercent(cpu.getSystemCpuLoad()), formatDecimalBytes(memory.getUsedMemory())))
+                    .onClose((cpu, memory) ->
+                        out.printf("avg. process-cpu: %s, avg. system-cpu %s, max. used-memory: %s%n", formatPercent(cpu.getAverageProcessCpuLoad()), formatPercent(cpu.getAverageSystemCpuLoad()), formatDecimalBytes(memory.getMaxUsedMemory())))
+                    .start()) {  // Don't forget to start the monitor
 
-} // Automatically close/stop the monitor
+        ... // Do work
+
+        } // Automatically close/stop monitor
 ```
 
 Documentation
