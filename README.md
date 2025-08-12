@@ -25,15 +25,9 @@ try (SystemMonitor monitor = BackgroundSystemMonitor
                                    logger.info("Currently using memory: %s out of %s", usedMemory, availableMemory);
                                })
                                .start()) { // Don't forget to start the monitor
+                               
+    ... // Perform CPU and memory intensive tasks
 
-    // Perform CPU and memory intensive tasks
-
-    final CpuUsage cpu = monitor.getCpuUsage();
-    final MemoryUsage memory = monitor.getMemoryUsage();
-
-    logger.info("Average CPU load: %s", formatPercent(cpu.getAverageSystemCpuLoad()));
-    logger.info("Maximum used memory: %s", formatDecimalBytes(memory.getMaxUsedMemory()));
-    
 } // Automatically close/stop the monitor
 ```
 
