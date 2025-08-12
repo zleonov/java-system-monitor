@@ -14,29 +14,26 @@ Usage example
 ```java
 import static software.leonov.system.monitor.util.Formatter.*;
 ...
+final String availableMemory = formatDecimalBytes(SystemMonitor.getAvailableMemory());
+...
 try (SystemMonitor monitor = BackgroundSystemMonitor
-                                    .updateEvery(Duration.ofSeconds(1))
-                                    .onUpdate((cpu, memory) -> {
-                                        logger.info(...);
-                                    })
-                                    .start()) { // Don't forget to start the monitor
+                                            .updateEvery(Duration.ofSeconds(1))
+                                            .onUpdate((cpu, memory) -> {
+                                                final String cpuLoad = formatPercent(cpu.getSystemCpuLoad());
+                                                final String usedMemory = formatDecimalBytes(memory.getUsedMemory());
+                                                logger.info("Current CPU load: %s", cpuLoad);
+                                                logger.info("Currently using memory: %s out of %s", usedMemory, availableMemory);
+                                            })
+                                            .start()) { // Don't forget to start the monitor
 
     // Perform CPU and memory intensive tasks
 
-    final CpuUsage    cpu    = monitor.getCpuUsage();
+    final CpuUsage cpu    = monitor.getCpuUsage();
     final MemoryUsage memory = monitor.getMemoryUsage();
-
-    logger.info("Current CPU load: %s", formatPercent(cpu.getSystemCpuLoad()));
-    logger.info("Currently using memory: %s out of %s", formatDecimalBytes(memory.getUsedMemory()), availableMemory);
-    
-    // Finished
-
-    cpu    = monitor.getCpuUsage();
-    memory = monitor.getMemoryUsage();
 
     logger.info("Average CPU load: %s", formatPercent(cpu.getAverageSystemCpuLoad()));
     logger.info("Maximum used memory: %s", formatDecimalBytes(memory.getMaxUsedMemory()));
-
+    
 } // Automatically close/stop the monitor
 ```
 
