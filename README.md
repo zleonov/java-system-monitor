@@ -17,18 +17,18 @@ import static software.leonov.system.monitor.util.Formatter.*;
 final String availableMemory = formatDecimalBytes(SystemMonitor.getAvailableMemory());
 ...
 try (SystemMonitor monitor = BackgroundSystemMonitor
-                                            .updateEvery(Duration.ofSeconds(1))
-                                            .onUpdate((cpu, memory) -> {
-                                                final String cpuLoad = formatPercent(cpu.getSystemCpuLoad());
-                                                final String usedMemory = formatDecimalBytes(memory.getUsedMemory());
-                                                logger.info("Current CPU load: %s", cpuLoad);
-                                                logger.info("Currently using memory: %s out of %s", usedMemory, availableMemory);
-                                            })
-                                            .start()) { // Don't forget to start the monitor
+                               .updateEvery(Duration.ofSeconds(1))
+                               .onUpdate((cpu, memory) -> {
+                                   final String cpuLoad = formatPercent(cpu.getSystemCpuLoad());
+                                   final String usedMemory = formatDecimalBytes(memory.getUsedMemory());
+                                   logger.info("Current CPU load: %s", cpuLoad);
+                                   logger.info("Currently using memory: %s out of %s", usedMemory, availableMemory);
+                               })
+                               .start()) { // Don't forget to start the monitor
 
     // Perform CPU and memory intensive tasks
 
-    final CpuUsage cpu    = monitor.getCpuUsage();
+    final CpuUsage cpu = monitor.getCpuUsage();
     final MemoryUsage memory = monitor.getMemoryUsage();
 
     logger.info("Average CPU load: %s", formatPercent(cpu.getAverageSystemCpuLoad()));
