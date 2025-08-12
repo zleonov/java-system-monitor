@@ -23,7 +23,7 @@ try (final BackgroundSystemMonitor monitor = BackgroundSystemMonitor
                         out.printf("avg. process-cpu: %s, avg. system-cpu %s, max. used-memory: %s%n", formatPercent(cpu.getAverageProcessCpuLoad()), formatPercent(cpu.getAverageSystemCpuLoad()), formatDecimalBytes(memory.getMaxUsedMemory())))
                     .start()) {  // Don't forget to start the monitor
 
-        ... // Do work
+    ... // Do work
 
 } // Automatically close/stop monitor
 ```
