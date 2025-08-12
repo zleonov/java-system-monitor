@@ -8,23 +8,12 @@ Java System Monitor provides a simple and efficient way to monitor system resour
 
 The library is designed to be lightweight, easy to use, and performant, making it suitable for both development and production environments.
 
-Key features:
-- CPU (process and system-wide) and memory usage monitoring
-- Point-in-time and aggregate (average / maximum) metrics
-- Multiple monitoring strategies (lazy, background)
-- Minimal overhead
-- Thread-safe implementations for concurrent use
-- 100% pure Java, no external dependencies
-
-Usage Example
+Usage example
 -------------
 
 ```java
-
 import static software.leonov.system.monitor.util.Formatter.*;
-
 ...
-
 try (SystemMonitor monitor = BackgroundSystemMonitor
                                     .updateEvery(Duration.ofSeconds(1))
                                     .onUpdate((cpu, memory) -> {
@@ -32,16 +21,16 @@ try (SystemMonitor monitor = BackgroundSystemMonitor
                                     })
                                     .start()) {  // Don't forget to start() the monitor
 
-    ... // Perform CPU and memory intensive tasks
+    // Perform CPU and memory intensive tasks
 
-    CpuUsage    cpu    = monitor.getCpuUsage();
-    MemoryUsage memory = monitor.getMemoryUsage();
+    final CpuUsage    cpu    = monitor.getCpuUsage();
+    final MemoryUsage memory = monitor.getMemoryUsage();
 
     System.out.println("Current CPU load: " + formatPercent(cpu.getSystemCpuLoad()));
     System.out.println("Currently using memory: " + formatDecimalBytes(memory.getUsedMemory()) +
                                                                  " out of " + availableMemory);
 
-    ... // Perform more CPU and memory intensive tasks
+    // Perform more CPU and memory intensive tasks
     
     // Finished
 
@@ -64,7 +53,7 @@ Requirements
 ------------
 - Java 8 or higher
 
-Similar Libraries
+Similar libraries
 -----------------
 - [OSHI](https://github.com/oshi/oshi) - A free JNA-based (native) Operating System and Hardware Information library for Java.
-- [Sigar](https://github.com/hyperic/sigar) - System Information Gatherer And Reporter.
+- [Sigar](https://github.com/hyperic/sigar) - System Information Gatherer And Reporter (no longer updated).
