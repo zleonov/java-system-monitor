@@ -104,12 +104,12 @@ abstract class AbstractSystemMonitor implements SystemMonitor {
         return memory;
     }
 
-    private double calculateProcessCpuUsage() {
-        final double cpuUsage = SUN_OS_BEAN == null ? calculateProcessCpuUsageManually() : SUN_OS_BEAN.getProcessCpuLoad();
+    private double getProcessCpuUsage() {
+        final double cpuUsage = SUN_OS_BEAN == null ? calculateProcessCpuUsage() : SUN_OS_BEAN.getProcessCpuLoad();
         return cpuUsage < 0 ? -1.0 : Math.min(cpuUsage * 100.0, 100.0);
     }
 
-    private double calculateProcessCpuUsageManually() {
+    private double calculateProcessCpuUsage() {
         final long currentTime    = System.nanoTime();
         final long currentCpuTime = getTotalThreadCpuTime();
 
@@ -217,7 +217,7 @@ abstract class AbstractSystemMonitor implements SystemMonitor {
         maxUsedMemory = Math.max(usedMemory, maxUsedMemory);
 
         // Update process CPU metrics
-        processCpu    = calculateProcessCpuUsage();
+        processCpu    = getProcessCpuUsage();
         maxProcessCpu = Math.max(processCpu, maxProcessCpu);
 
         // Update system CPU metrics
