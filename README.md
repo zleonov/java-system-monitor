@@ -4,7 +4,7 @@ A lightweight library for monitoring Java Virtual Machine (JVM) and system-level
 
 Overview
 --------
-Java System Monitor provides a simple and efficient way to monitor system resources in Java applications. It offers several monitoring strategies to suit different use cases, from background monitoring to on-demand resource checks.
+Java System Monitor provides a simple and efficient way to monitor CPU and memory resources in Java applications. It offers several monitoring strategies to suit different use cases, from background monitoring to on-demand resource checks.
 
 The library is designed to be lightweight, easy to use, and performant, making it suitable for both development and production environments.
 
